@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     private new Camera camera;
     private float? lastShot;
     private int ammoInMagazine = 0;
-    private float? reloadStartTime;
+    private bool reloading = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +34,7 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         if (Input.GetButton("Fire1")) Shoot();
-        var canReload = ammo != 0 && (reloadStartTime == null || Time.time > reloadStartTime + reloadSpeed);
-        if (ammoInMagazine == 0 && canReload) StartCoroutine(Reload());
-        if (canReload && Input.GetButtonDown("Reload")) StartCoroutine(Reload());
+        if ((ammoInMagazine == 0 || Input.GetButtonDown("Reload")) && canReload()) StartCoroutine(Reload());
     }
 
     void Shoot()
@@ -54,13 +52,18 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    bool canReload()
+    {
+        return !reloading && ammo != 0 && ammoInMagazine != magazineSize;
+    }
+
     IEnumerator Reload()
     {
-        if (ammoInMagazine == magazineSize || reloadStartTime + reloadSpeed > Time.time) yield return null;
-        reloadStartTime = Time.time;
+        reloading = true;
+        var reloadStartTime = Time.time;
         while (Time.time < reloadStartTime + reloadSpeed)
         {
-            var elapsedTime = Time.time - (float)reloadStartTime;
+            var elapsedTime = Time.time - reloadStartTime;
             transform.localPosition = new Vector3(0, -reloadAnimationCurve.Evaluate(elapsedTime / reloadSpeed), 0);
             yield return new WaitForEndOfFrame();
         }
@@ -68,6 +71,7 @@ public class Weapon : MonoBehaviour
         var reloadedAmmoCount = Mathf.Min(magazineSize - ammoInMagazine, ammo);
         ammoInMagazine += reloadedAmmoCount;
         ammo -= reloadedAmmoCount;
+        reloading = false;
         yield return null;
     }
 }
