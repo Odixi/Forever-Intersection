@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c314ebf5a9cd949843d37719b818b1, type: 3}
-  m_Name: Box
+  m_Name: Ball
   m_EditorClassIdentifier: 
-  furnitureName: Box
+  furnitureName: Ball
   furniturePrice: 0
-  fullFurniture: {fileID: 8054277353030250771, guid: 5415b10e976ed5a4886ce8759f2fe83c,
+  fullFurniture: {fileID: 6960225803802223026, guid: 812e2c0727e81a943bf613cff6cc572c,
     type: 3}
-  furnitureBlueprint: {fileID: 6895149955439778989, guid: 6f50d57d8fc38184c81adf75357b2f72,
+  furnitureBlueprint: {fileID: 6624946197995876072, guid: c7570fe04fe4d654591bfc93024e06a0,
     type: 3}

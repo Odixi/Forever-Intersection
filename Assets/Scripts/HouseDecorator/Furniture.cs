@@ -6,6 +6,7 @@ using UnityEngine;
 public class Furniture : ScriptableObject
 {
   public string furnitureName;
+  public int furniturePrice;
   public GameObject fullFurniture;
   public GameObject furnitureBlueprint;
 }
