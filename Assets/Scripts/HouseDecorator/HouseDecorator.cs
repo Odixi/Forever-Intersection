@@ -5,9 +5,8 @@ using UnityEngine;
 public class HouseDecorator : MonoBehaviour
 {
     [SerializeField] private Camera mainCam;
-    [SerializeField] private Furniture furniture;
     public GameObject currentFurniture;
-    public GameObject furnitureBlueprint;
+
     // Start is called before the first frame update
     void Start()
     {
