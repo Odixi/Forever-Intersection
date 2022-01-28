@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Blueprint : MonoBehaviour
 {
+    public bool canPlace;
+
     void Update()
     {
         GetPlayerMousePos();
@@ -17,4 +19,12 @@ public class Blueprint : MonoBehaviour
             transform.position = raycastHit.point;
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+        {
+            if(other.gameObject.tag == "Furniture")
+            {
+                canPlace = false;
+            } else canPlace = true;
+        }
 }
