@@ -8,6 +8,7 @@ public class FPSController : MonoBehaviour
     private float speed = 5f;
     private new Camera camera;
     private CharacterController controller;
+    private float cameraPitch = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +42,10 @@ public class FPSController : MonoBehaviour
     {
         var y = -Input.GetAxis("Mouse Y") * sensitivity;
         var x = Input.GetAxis("Mouse X") * sensitivity;
-        camera.transform.Rotate(y, 0, 0);
+        
         transform.Rotate(0, x, 0);
+        cameraPitch = Mathf.Clamp(cameraPitch + y, -90, 90);
+        var cameraRotation = Quaternion.Euler(cameraPitch, 0, 0);
+        camera.transform.localRotation = cameraRotation;
     }
 }
