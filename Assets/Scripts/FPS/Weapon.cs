@@ -5,7 +5,9 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField]
-    AnimationCurve reloadAnimationCurve;
+    private AnimationCurve reloadAnimationCurve;
+    [SerializeField]
+    private List<GameObject> bulletDecals;
     [SerializeField]
     private int magazineSize = 12;
     [SerializeField]
@@ -16,6 +18,8 @@ public class Weapon : MonoBehaviour
     // Seconds
     [SerializeField]
     private float reloadSpeed = 1f;
+    [SerializeField]
+    private Camera raycastCamera;
     private Transform barrel;
     private new Camera camera;
     private float? lastShot;
@@ -41,15 +45,21 @@ public class Weapon : MonoBehaviour
     {
         if (ammoInMagazine != 0 && (lastShot == null || Time.time > lastShot + fireRate))
         {
-            var ray = camera.ScreenPointToRay(new Vector3(0.5f * Screen.width, 0.5f * Screen.height));
+            var ray = raycastCamera.ScreenPointToRay(new Vector3(0.5f * Screen.width, 0.5f * Screen.height));
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawLine(camera.transform.position, hit.point, Color.red, 1f);
+                InstantiateBulletDecal(hit.point, Quaternion.LookRotation(hit.point - transform.position));
             }
             ammoInMagazine--;
             lastShot = Time.time;
         }
+    }
+
+    void InstantiateBulletDecal(Vector3 position, Quaternion rotation)
+    {
+        var decalIndex = Random.Range(0, bulletDecals.Count);
+        Instantiate(bulletDecals[decalIndex], position, rotation);
     }
 
     bool canReload()
