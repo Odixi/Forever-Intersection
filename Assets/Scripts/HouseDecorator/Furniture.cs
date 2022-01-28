@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furniture : MonoBehaviour
+[CreateAssetMenu(fileName = "Furniture", menuName = "ScriptableObjects/FurnitureScriptableObject", order = 1)]
+public class Furniture : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  public string furnitureName;
+  public GameObject fullFurniture;
+  public GameObject furnitureBlueprint;
 }
