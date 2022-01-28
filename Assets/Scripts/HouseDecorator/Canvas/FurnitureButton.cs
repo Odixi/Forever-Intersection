@@ -17,6 +17,11 @@ public class FurnitureButton : MonoBehaviour
 
     public void OnClick()
     {
+        var bluePrint = GameObject.FindGameObjectWithTag("Blueprint");
+        if(bluePrint != null)
+        {
+            Destroy(bluePrint);
+        }
         Instantiate(furniture.furnitureBlueprint, transform.position, Quaternion.identity);
         houseDecorator.currentFurniture = furniture.fullFurniture;
     }
