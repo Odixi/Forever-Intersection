@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Box
   m_EditorClassIdentifier: 
   furnitureName: Box
-  furniturePrice: 0
+  furniturePrice: 3
   fullFurniture: {fileID: 8054277353030250771, guid: 5415b10e976ed5a4886ce8759f2fe83c,
     type: 3}
   furnitureBlueprint: {fileID: 6895149955439778989, guid: 6f50d57d8fc38184c81adf75357b2f72,
