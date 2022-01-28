@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furnitureName: Ball
   furniturePrice: 0
-  fullFurniture: {fileID: 6960225803802223026, guid: 812e2c0727e81a943bf613cff6cc572c,
+  fullFurniture: {fileID: 5425443846414493395, guid: aa2179b15a4570841b67602756c9b791,
     type: 3}
   furnitureBlueprint: {fileID: 6624946197995876072, guid: c7570fe04fe4d654591bfc93024e06a0,
     type: 3}
