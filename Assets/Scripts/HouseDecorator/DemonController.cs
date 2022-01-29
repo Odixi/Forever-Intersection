@@ -5,8 +5,6 @@ using UnityEngine;
 public class DemonController : MonoBehaviour
 {
     public Animator assAnimator, donutAnimator;
-    public float minimum = -1.0f;
-    public float maximum = 1.0f;
     public float speed;
     [Range(0,2)] float range = 1f;
     // Start is called before the first frame update
