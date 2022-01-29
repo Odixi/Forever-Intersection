@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5425443845728365256}
   - component: {fileID: 5425443845728365257}
   - component: {fileID: 5425443845728365258}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,9 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5425443846414493394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BallFurniture
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

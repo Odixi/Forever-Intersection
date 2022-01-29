@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class HouseDecorator : MonoBehaviour
 {
+    public LayerMask layerMask;
     [SerializeField] private Camera mainCam;
     [SerializeField] private DebugPlayer player;
     public GameObject currentFurniture;
     public GameObject currentBlueprint;
     public int currentFurniturePrice;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class HouseDecorator : MonoBehaviour
     public void GetPlayerMousePos()
     {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit)) 
+        if(Physics.Raycast(ray, out RaycastHit raycastHit, 10000, layerMask)) 
         {
             transform.position = raycastHit.point;
         }
@@ -36,7 +38,7 @@ public class HouseDecorator : MonoBehaviour
         {
             if(player.playerCurrency >= currentFurniturePrice)
             {
-            Instantiate(currentFurniture, transform.position, Quaternion.identity);
+            Instantiate(currentFurniture, transform.position, transform.rotation);
             player.playerCurrency -= currentFurniturePrice;
             } else Debug.Log("poor bastard no money");
         }

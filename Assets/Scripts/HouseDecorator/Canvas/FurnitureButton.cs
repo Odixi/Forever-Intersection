@@ -25,6 +25,5 @@ public class FurnitureButton : MonoBehaviour
         Instantiate(furniture.furnitureBlueprint, transform.position, Quaternion.identity);
         houseDecorator.currentFurniture = furniture.fullFurniture;
         houseDecorator.currentFurniturePrice = furniture.furniturePrice;
-        houseDecorator.currentBlueprint = furniture.furnitureBlueprint;
     }
 }

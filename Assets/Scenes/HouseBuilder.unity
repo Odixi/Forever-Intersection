@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 751039674}
   - component: {fileID: 751039673}
   - component: {fileID: 751039672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1519512924}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1220,6 +1220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a03e7d84ec5aa408be47c1a1404f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 320
   mainCam: {fileID: 1694893882}
   player: {fileID: 1941539879}
   currentFurniture: {fileID: 0}
