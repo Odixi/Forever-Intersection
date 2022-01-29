@@ -5,7 +5,7 @@ using System.Linq;
 
 public class WorldGenerator : MonoBehaviour
 {
-    public static readonly float BlockSize = 2;
+    public static readonly float BlockSize = 3;
 
     public List<WorldBlock> Blocks { get; private set; } = new List<WorldBlock>();
     public HashSet<Vector3Int> OccupiedSpaces { get; private set; } = new HashSet<Vector3Int>();
@@ -42,7 +42,14 @@ public class WorldGenerator : MonoBehaviour
         Blocks.Add(block);
         AppendBlockToOccupiedSpaces(block);
 
-        PopulateBlockOpenings(block, 1);
+        int tries = 0;
+        while(Blocks.Count < MaxDepth*2 || tries > 20)
+        {
+            PopulateBlockOpenings(block, 1);
+            tries++;
+        }
+
+
 
         //StartCoroutine(PopulateBlockOpeningsCr(block, 1));
     }
@@ -70,7 +77,7 @@ public class WorldGenerator : MonoBehaviour
             if (block.Neighbors[i] != null){
                 continue;
             }
-            if (depth > 20)
+            if (depth > MaxDepth)
             {
                 AddBlock(WallPrefab, block, i);
                 continue;

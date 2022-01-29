@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5143639353935518270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6339299703877827135}
@@ -51,6 +51,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: -1}
   - {x: 1, y: 0, z: 0}
+  IsEndWall: 0
 --- !u!1 &6679515352286634117
 GameObject:
   m_ObjectHideFlags: 0

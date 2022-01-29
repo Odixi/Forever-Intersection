@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3753126930045427604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6878269986153696424}
@@ -49,6 +49,7 @@ MonoBehaviour:
   Size: {x: 1, y: 1, z: 1}
   Openings:
   - {x: 0, y: 0, z: -1}
+  IsEndWall: 0
 --- !u!1001 &6412632606999931715
 PrefabInstance:
   m_ObjectHideFlags: 0
