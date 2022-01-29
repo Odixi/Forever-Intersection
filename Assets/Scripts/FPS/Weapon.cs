@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private int bulletsPerShot = 1;
     [SerializeField]
+    private float damagePerBullet = 20;
+    [SerializeField]
     private float spread = 0;
     [SerializeField]
     private int magazineSize = 12;
@@ -59,6 +61,12 @@ public class Weapon : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     InstantiateBulletDecal(hit.point, Quaternion.LookRotation(hit.point - transform.position), hit.collider.transform);
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        var enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                        enemy.TakeDamage(damagePerBullet);
+                    }
+
                 }
             }
             ammoInMagazine--;
