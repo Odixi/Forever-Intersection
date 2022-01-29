@@ -4,27 +4,39 @@ using UnityEngine;
 
 public class Blueprint : MonoBehaviour
 {
+    public static Blueprint singleton;
     public HouseDecorator houseDecorator;
     public LayerMask layerMask;
+    public PlacedFurniture placedFurniture;
     public Material blueMat;
     public Material redMat;
     public Renderer blueprintRend;
+    public bool canSell = false;
     
+    private void Awake()
+    {
+        singleton = this;
+    }
     private void Start()
     {
+        placedFurniture = null;
         houseDecorator.canPlace = true;
     }
-    void Update()
+    public void MatChanger()
     {
-        GetPlayerMousePos();
-    }
-    public void GetPlayerMousePos()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit, 10000, layerMask))
+        if(houseDecorator.canPlace == false)
         {
-            transform.position = raycastHit.point;
-            transform.rotation = Quaternion.Euler(0,houseDecorator.rotation,0);
+            for(int i = 0; i < blueprintRend.materials.Length; i++)
+            {
+                blueprintRend.materials[i].CopyPropertiesFromMaterial(redMat);
+            }
+        }
+        if(houseDecorator.canPlace == true)
+        {
+            for(int i = 0; i < blueprintRend.materials.Length; i++)
+            {
+                blueprintRend.materials[i].CopyPropertiesFromMaterial(blueMat);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -32,19 +44,18 @@ public class Blueprint : MonoBehaviour
         if(other.gameObject.CompareTag("Furniture"))
         {
             houseDecorator.canPlace = false;
-            for(int i = 0; i < blueprintRend.materials.Length; i++)
+            MatChanger();
+            placedFurniture = other.gameObject.GetComponent<PlacedFurniture>();
+            if(placedFurniture != null)
             {
-                blueprintRend.materials[i].CopyPropertiesFromMaterial(redMat);
+                canSell = true;
             }
-           // blueprintRend.materials[].CopyPropertiesFromMaterial(redMat);
         } 
     }
     private void OnTriggerExit(Collider other)
         {
             houseDecorator.canPlace = true;
-            for(int i = 0; i < blueprintRend.materials.Length; i++)
-            {
-                blueprintRend.materials[i].CopyPropertiesFromMaterial(blueMat);
-            }
+            canSell = false;
+            MatChanger();
         }
     }
