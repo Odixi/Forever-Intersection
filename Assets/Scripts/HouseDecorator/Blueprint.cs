@@ -31,12 +31,19 @@ public class Blueprint : MonoBehaviour
         if(other.gameObject.CompareTag("Furniture"))
         {
             houseDecorator.canPlace = false;
-            blueprintRend.material.CopyPropertiesFromMaterial(redMat);
+            for(int i = 0; i < blueprintRend.materials.Length; i++)
+            {
+                blueprintRend.materials[i].CopyPropertiesFromMaterial(redMat);
+            }
+           // blueprintRend.materials[].CopyPropertiesFromMaterial(redMat);
         } 
     }
     private void OnTriggerExit(Collider other)
         {
             houseDecorator.canPlace = true;
-            blueprintRend.material.CopyPropertiesFromMaterial(blueMat);
+            for(int i = 0; i < blueprintRend.materials.Length; i++)
+            {
+                blueprintRend.materials[i].CopyPropertiesFromMaterial(blueMat);
+            }
         }
     }
