@@ -2243,9 +2243,10 @@ MonoBehaviour:
   mainCam: {fileID: 1694893882}
   player: {fileID: 1941539879}
   currentFurniture: {fileID: 0}
-  currentBlueprint: {fileID: 0}
   currentFurniturePrice: 0
   canPlace: 0
+  rotation: 0
+  rotAmount: 90
 --- !u!4 &1941539878
 Transform:
   m_ObjectHideFlags: 0
