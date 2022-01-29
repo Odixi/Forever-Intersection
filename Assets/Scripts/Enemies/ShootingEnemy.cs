@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootingEnemy : Enemy
 {
     private bool hasSeenPlayer = false;
+    private int framesSeen = 0;
     [SerializeField]
     private float MoveSpeed = 0.008f;
     [SerializeField]
@@ -25,7 +26,15 @@ public class ShootingEnemy : Enemy
     {
         if (!hasSeenPlayer && IsPlayerInSight())
         {
-            hasSeenPlayer = true;
+            framesSeen++;
+            if (framesSeen >= 8)
+            {
+                hasSeenPlayer = true;
+            }
+        }
+        else
+        {
+            framesSeen = 0;
         }
 
         if (hasSeenPlayer)

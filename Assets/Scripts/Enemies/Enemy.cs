@@ -24,7 +24,7 @@ public abstract class Enemy : MonoBehaviour
     {
         // Try to avoid obstacles
         RaycastHit hit;
-        var direction = playerCamera.transform.position - eyes.position;
+        var direction = Player.Instance.TargetPoint - eyes.position;
         Vector3 moveDirection = direction;
         if (Physics.Raycast(eyes.position, direction, out hit, 1.5f))
         {

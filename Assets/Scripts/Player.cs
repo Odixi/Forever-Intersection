@@ -11,11 +11,14 @@ public class Player : MonoBehaviour
     private float maxHealth;
     public float Health { get; private set; }
 
-    public Vector3 TargetPoint => GetComponent<CharacterController>().bounds.center;
+    private CharacterController characterController;
+
+    public Vector3 TargetPoint => characterController.bounds.center + 0.35f*Vector3.up;
 
     public void Awake()
     {
         Instance = this;
+        characterController = GetComponent<CharacterController>();
     }
 
     public void TakeDamage(float damageAmount)
