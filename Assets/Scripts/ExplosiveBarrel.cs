@@ -23,12 +23,12 @@ public class ExplosiveBarrel : MonoBehaviour
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
 
-            var damage = Mathf.RoundToInt(110f - 110f * Vector3.Distance(player.transform.position, transform.position) / fallOffDistance);
+            var damage = Mathf.RoundToInt(Mathf.Max(0f, 110f - 110f * (Vector3.Distance(player.transform.position, transform.position) / fallOffDistance)));
             player.GetComponent<Player>().TakeDamage(damage);
         }
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            var damage = Mathf.RoundToInt(110f - Vector3.Distance(enemy.transform.position, transform.position) / fallOffDistance);
+            var damage = Mathf.RoundToInt(Mathf.Max(0f, 110f - 110f * (Vector3.Distance(enemy.transform.position, transform.position) / fallOffDistance)));
             enemy.GetComponent<Enemy>().TakeDamage(damage);
         }
         foreach (var barrel in GameObject.FindGameObjectsWithTag("Barrel"))
