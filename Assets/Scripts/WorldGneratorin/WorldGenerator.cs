@@ -26,14 +26,16 @@ public class WorldGenerator : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        int tries = 0;
+        while (Blocks.Count < MaxDepth * 2 && ++tries < 20)
+        {
+            Clear();
+            Init();
+        }
     }
 
     private void Init()
     {
-        Blocks = new List<WorldBlock>();
-        OccupiedSpaces = new HashSet<Vector3Int>();
-
         var go = Instantiate(StartBlock);
         go.transform.rotation = Quaternion.identity;
         go.transform.position = Vector3Int.zero;
@@ -42,16 +44,18 @@ public class WorldGenerator : MonoBehaviour
         Blocks.Add(block);
         AppendBlockToOccupiedSpaces(block);
 
-        int tries = 0;
-        while(Blocks.Count < MaxDepth*2 || tries > 20)
-        {
-            PopulateBlockOpenings(block, 1);
-            tries++;
-        }
-
-
+        PopulateBlockOpenings(block, 1);
 
         //StartCoroutine(PopulateBlockOpeningsCr(block, 1));
+    }
+    private void Clear()
+    {
+        foreach (var b in Blocks)
+        {
+            Destroy(b.gameObject);
+        }
+        Blocks = new List<WorldBlock>();
+        OccupiedSpaces = new HashSet<Vector3Int>();
     }
 
     private void Update()
@@ -62,10 +66,6 @@ public class WorldGenerator : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            foreach(var b in Blocks)
-            {
-                Destroy(b.gameObject);
-            }
             Init();
         }
     }

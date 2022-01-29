@@ -1,0 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Enemy : MonoBehaviour
+{
+    [SerializeField]
+    private float maxHealth;
+    public float Health { get; private set; }
+
+    [SerializeField]
+    protected Transform eyes;
+
+    protected Camera playerCamera;
+
+
+    private void Awake()
+    {
+        Health = maxHealth;
+        playerCamera = Camera.main;
+    }
+
+    protected void MoveTovardsPlayer(float amount)
+    {
+        // Try to avoid obstacles
+        RaycastHit hit;
+        var direction = playerCamera.transform.position - eyes.position;
+        Vector3 moveDirection = direction;
+        if (Physics.Raycast(eyes.position, direction, out hit, 1))
+        {
+            var c = Vector3.Cross(hit.normal, direction);
+            moveDirection = Vector3.Cross(c, hit.normal);
+        }
+
+        transform.position += amount * moveDirection.normalized;
+    }
+
+    protected bool IsPlayerInSight()
+    {
+        var d = playerCamera.transform.position - eyes.position;
+        return !Physics.Raycast(eyes.position, d, d.magnitude-0.5f);
+    }
+
+    public bool TakeDamage(float damageAmount)
+    {
+        Health -= damageAmount;
+
+        OnTakeDamage(damageAmount);
+
+        if (Health <= 0)
+        {
+            Die();
+            return true;
+        }
+
+        return false;
+    }
+
+    abstract protected void OnTakeDamage(float damageAmount);
+    abstract protected void OnAboutToDie();
+
+    // TODO drop loot
+
+    private void Die()
+    {
+        OnAboutToDie();
+        Destroy(gameObject);
+    }
+
+}
