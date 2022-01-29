@@ -66,7 +66,10 @@ public class Weapon : MonoBehaviour
                         var enemy = hit.collider.gameObject.GetComponent<Enemy>();
                         enemy.TakeDamage(damagePerBullet);
                     }
-
+                    if (hit.collider.tag == "Barrel")
+                    {
+                        hit.collider.gameObject.GetComponent<ExplosiveBarrel>().GetHit();
+                    }
                 }
             }
             ammoInMagazine--;
