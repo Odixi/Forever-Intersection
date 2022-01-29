@@ -9,6 +9,10 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private List<GameObject> bulletDecals;
     [SerializeField]
+    private AudioSource shootAudioSource;
+    [SerializeField]
+    private AudioSource reloadAudioSource;
+    [SerializeField]
     private int bulletsPerShot = 1;
     [SerializeField]
     private float damagePerBullet = 20;
@@ -51,6 +55,7 @@ public class Weapon : MonoBehaviour
     {
         if (ammoInMagazine != 0 && (lastShot == null || Time.time > lastShot + fireRate))
         {
+            shootAudioSource.Play();
             for (var i = 0; i < bulletsPerShot; i++)
             {
                 var ray = raycastCamera.ScreenPointToRay(new Vector3(0.5f * Screen.width, 0.5f * Screen.height));
@@ -103,6 +108,7 @@ public class Weapon : MonoBehaviour
         ammoInMagazine += reloadedAmmoCount;
         ammo -= reloadedAmmoCount;
         reloading = false;
+        reloadAudioSource.Play();
         yield return null;
     }
 }
