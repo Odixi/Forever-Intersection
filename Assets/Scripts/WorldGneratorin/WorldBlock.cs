@@ -14,6 +14,8 @@ public class WorldBlock : MonoBehaviour
     public Vector3Int[] Directions { get; private set; }
     public WorldBlock[] Neighbors { get; private set; }
 
+    public bool IsEndWall = false;
+
     private void Awake()
     {
         CalcualteDirections();
@@ -94,6 +96,10 @@ public class WorldBlock : MonoBehaviour
 
     public List<Vector3Int> GetOccupiedSpaces()
     {
+        if (IsEndWall)
+        {
+            return new List<Vector3Int>();
+        }
         List<Vector3Int> spaces = new List<Vector3Int>();
         for (int x = Mathf.Min(Size.x+1, 0); x < Mathf.Max(Size.x, 1); ++x)
         {
@@ -140,7 +146,19 @@ public class WorldBlock : MonoBehaviour
                 }
             }
         }
-    }
 
-   
+        Gizmos.color = Color.red;
+        foreach (var space in GetOccupiedSpaces())
+        {
+            var sf = new Vector3(space.x, space.y, space.z) * WorldGenerator.BlockSize;
+            Gizmos.DrawLine(sf,
+                            sf + Vector3.one * WorldGenerator.BlockSize);
+            Gizmos.DrawLine(sf + new Vector3(1, 0, 0) * WorldGenerator.BlockSize,
+                            sf + (Vector3.one - new Vector3(1, 0, 0)) * WorldGenerator.BlockSize);
+            Gizmos.DrawLine(sf + new Vector3(0, 1, 0) * WorldGenerator.BlockSize,
+                            sf + (Vector3.one - new Vector3(0, 1, 0)) * WorldGenerator.BlockSize);
+            Gizmos.DrawLine(sf + new Vector3(0, 0, 1) * WorldGenerator.BlockSize,
+                            sf + (Vector3.one - new Vector3(0, 0, 1)) * WorldGenerator.BlockSize);
+        }
+    }
 }

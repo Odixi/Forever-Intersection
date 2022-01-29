@@ -16,6 +16,11 @@ public class WorldGenerator : MonoBehaviour
     private List<GameObject> BlockTemplates;
     [SerializeField]
     private GameObject StartBlock;
+    [SerializeField]
+    private GameObject WallPrefab;
+
+    public int MaxDepth = 20;
+
 
     private bool cont = false;
 
@@ -60,19 +65,21 @@ public class WorldGenerator : MonoBehaviour
 
     private void PopulateBlockOpenings(WorldBlock block, int depth)
     {
-        if (depth > 20)
-        {
-            return;
-        }
         for (int i = 0; i < block.Openings.Length; ++i)
         {
             if (block.Neighbors[i] != null){
                 continue;
             }
+            if (depth > 20)
+            {
+                AddBlock(WallPrefab, block, i);
+                continue;
+            }
+
             var newBlock = AddBlock(BlockTemplates[Random.Range(0, BlockTemplates.Count)], block, i);
             if (newBlock == null)
             {
-                // TODO add some kind of wall
+                AddBlock(WallPrefab, block, i);
                 continue;
             }
             PopulateBlockOpenings(newBlock, depth + 1);
