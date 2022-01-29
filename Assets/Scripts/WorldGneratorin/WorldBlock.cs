@@ -14,6 +14,8 @@ public class WorldBlock : MonoBehaviour
     public Vector3Int[] Directions { get; private set; }
     public WorldBlock[] Neighbors { get; private set; }
 
+    public Transform EnemySpawnPoint;
+
     public bool IsEndWall = false;
 
     private void Awake()

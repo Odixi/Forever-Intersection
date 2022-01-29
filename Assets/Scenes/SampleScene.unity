@@ -268,17 +268,17 @@ PrefabInstance:
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.89
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
@@ -408,7 +408,11 @@ MonoBehaviour:
     type: 3}
   WallPrefab: {fileID: 9107600221058385530, guid: 09506a71daeb17c4792ad30c603b33ce,
     type: 3}
-  MaxDepth: 12
+  EnemyPrefabs:
+  - {fileID: 9136933484159412052, guid: 83410806018d3a8408d80b00b8d047f1, type: 3}
+  - {fileID: 1028694822957030393, guid: b2d4643cc253ae94497e0ff3e1c011f9, type: 3}
+  MaxDepth: 10
+  SpawnChangePerRoom: 0.15
 --- !u!4 &1026278154
 Transform:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   eyes: {fileID: 9136933485056818667}
-  MoveSpeed: 0.035
+  MoveSpeed: 0.05
 --- !u!1 &9136933484471006038
 GameObject:
   m_ObjectHideFlags: 0

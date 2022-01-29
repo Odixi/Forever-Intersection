@@ -18,8 +18,11 @@ public class WorldGenerator : MonoBehaviour
     private GameObject StartBlock;
     [SerializeField]
     private GameObject WallPrefab;
+    [SerializeField]
+    private List<GameObject> EnemyPrefabs;
 
     public int MaxDepth = 20;
+    public float SpawnChangePerRoom = 0.2f;
 
 
     private bool cont = false;
@@ -86,12 +89,18 @@ public class WorldGenerator : MonoBehaviour
             var newBlock = AddBlock(BlockTemplates[Random.Range(0, BlockTemplates.Count)], block, i);
             if (newBlock == null)
             {
-                if (!OccupiedSpaces.Contains(block.Openings[i]))
+                //if (!OccupiedSpaces.Contains(block.Openings[i]))
                 {
                     AddBlock(WallPrefab, block, i);
                 }
                 continue;
             }
+            // Spawn an enemy
+            if (depth > 4 && Random.value < SpawnChangePerRoom)
+            {
+                Instantiate(EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count)], newBlock.EnemySpawnPoint.position, Quaternion.identity);
+            }
+
             PopulateBlockOpenings(newBlock, depth + 1);
         }
     }

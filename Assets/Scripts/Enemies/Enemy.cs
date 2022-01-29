@@ -26,11 +26,15 @@ public abstract class Enemy : MonoBehaviour
         RaycastHit hit;
         var direction = playerCamera.transform.position - eyes.position;
         Vector3 moveDirection = direction;
-        if (Physics.Raycast(eyes.position, direction, out hit, 1))
+        if (Physics.Raycast(eyes.position, direction, out hit, 1.5f))
         {
             var c = Vector3.Cross(hit.normal, direction);
             moveDirection = Vector3.Cross(c, hit.normal);
+            if (Physics.Raycast(eyes.position, moveDirection, out hit, 1f)){
+                return;
+            }
         }
+
 
         transform.position += amount * moveDirection.normalized;
     }
