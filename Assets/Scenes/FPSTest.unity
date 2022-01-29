@@ -1113,6 +1113,7 @@ MonoBehaviour:
   health: {fileID: 884532401}
   gibleds: {fileID: 397352903}
   player: {fileID: 459408698}
+  debugHealth: 100
   weapon: {fileID: 189157080}
 --- !u!1 &1414354457
 GameObject:
@@ -1201,7 +1202,7 @@ Animator:
   m_GameObject: {fileID: 1414354457}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 71c137a6140d0aa49bfdc16f2e8f3010, type: 2}
+  m_Controller: {fileID: 9100000, guid: b9d788ebac7043d47b1352b5204628cb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
