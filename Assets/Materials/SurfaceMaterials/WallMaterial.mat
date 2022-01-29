@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestMaterial
+  m_Name: WallMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 6796d31039945b64b904070001e2ef58,
     type: 3}
   m_ShaderKeywords: 
@@ -64,6 +64,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1644706e5aa94ffdab139dd36066e0cf_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 8fb440ff07c7486408cf0ff2bfe50660, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_410402e14cf64d52871d1a160cc36cd6_Texture_1:
         m_Texture: {fileID: 2800000, guid: 65b07894102b74c43be76854bd068db6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -78,6 +82,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c5f23192350642cc8bc2bbe70a81490b_Texture_1:
         m_Texture: {fileID: 2800000, guid: be3df4faa05700b40a10c00c311fcbfd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e833924e60a94638bcdc3a8407bffa9d_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 218ed66b84ce4ef4b805fd4058b87a89, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:

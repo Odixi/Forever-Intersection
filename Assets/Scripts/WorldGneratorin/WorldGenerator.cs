@@ -86,7 +86,10 @@ public class WorldGenerator : MonoBehaviour
             var newBlock = AddBlock(BlockTemplates[Random.Range(0, BlockTemplates.Count)], block, i);
             if (newBlock == null)
             {
-                AddBlock(WallPrefab, block, i);
+                if (!OccupiedSpaces.Contains(block.Openings[i]))
+                {
+                    AddBlock(WallPrefab, block, i);
+                }
                 continue;
             }
             PopulateBlockOpenings(newBlock, depth + 1);
