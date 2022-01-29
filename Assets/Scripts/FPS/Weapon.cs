@@ -9,6 +9,10 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private List<GameObject> bulletDecals;
     [SerializeField]
+    private int bulletsPerShot = 1;
+    [SerializeField]
+    private float spread = 0;
+    [SerializeField]
     private int magazineSize = 12;
     [SerializeField]
     public int ammo = 100;
@@ -45,21 +49,27 @@ public class Weapon : MonoBehaviour
     {
         if (ammoInMagazine != 0 && (lastShot == null || Time.time > lastShot + fireRate))
         {
-            var ray = raycastCamera.ScreenPointToRay(new Vector3(0.5f * Screen.width, 0.5f * Screen.height));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            for (var i = 0; i < bulletsPerShot; i++)
             {
-                InstantiateBulletDecal(hit.point, Quaternion.LookRotation(hit.point - transform.position));
+                var ray = raycastCamera.ScreenPointToRay(new Vector3(0.5f * Screen.width, 0.5f * Screen.height));
+                var x = Random.Range(-spread / 90, spread / 90);
+                var y = Random.Range(-spread / 90, spread / 90);
+                ray.direction = ray.direction + new Vector3(x, y, 0);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    InstantiateBulletDecal(hit.point, Quaternion.LookRotation(hit.point - transform.position), hit.collider.transform);
+                }
             }
             ammoInMagazine--;
             lastShot = Time.time;
         }
     }
 
-    void InstantiateBulletDecal(Vector3 position, Quaternion rotation)
+    void InstantiateBulletDecal(Vector3 position, Quaternion rotation, Transform parent)
     {
         var decalIndex = Random.Range(0, bulletDecals.Count);
-        Instantiate(bulletDecals[decalIndex], position, rotation);
+        Instantiate(bulletDecals[decalIndex], position, rotation, parent);
     }
 
     bool canReload()
