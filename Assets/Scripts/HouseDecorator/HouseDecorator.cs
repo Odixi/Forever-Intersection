@@ -6,9 +6,8 @@ public class HouseDecorator : MonoBehaviour
 {
     public LayerMask layerMask;
     [SerializeField] private Camera mainCam;
-    [SerializeField] private DebugPlayer player;
+    [SerializeField] public DebugPlayer player;
     public GameObject currentFurniture;
-    public GameObject currentBlueprint;
     public int currentFurniturePrice;
     public bool canPlace;
     public float rotation;
@@ -27,6 +26,11 @@ public class HouseDecorator : MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit raycastHit, 10000, layerMask)) 
         {
             transform.position = raycastHit.point;
+            if(Blueprint.singleton != null)
+            {
+             Blueprint.singleton.transform.position = raycastHit.point;
+             Blueprint.singleton.transform.rotation = Quaternion.Euler(0,rotation,0);
+            }
         }
     }
     public void PlayerInput()
@@ -35,10 +39,30 @@ public class HouseDecorator : MonoBehaviour
         {
             if(player.playerCurrency >= currentFurniturePrice)
             {
-            Instantiate(currentFurniture, transform.position, transform.rotation);
+           GameObject placedFurnitureObj = Instantiate(currentFurniture, transform.position, transform.rotation);
+           PlacedFurniture placedFurniture = placedFurnitureObj.GetComponentInChildren<PlacedFurniture>();
+           if(placedFurniture != null)
+            {
+               placedFurniture.furniturePrice = currentFurniturePrice;
+            }
             player.playerCurrency -= currentFurniturePrice;
-            } else Debug.Log("poor bastard no money");
+            }
+            if(player.playerCurrency < currentFurniturePrice)
+            {
+                canPlace = false;
+                Blueprint.singleton.MatChanger();
+            }
         }
+        if(Input.GetButtonDown("Fire2") && Blueprint.singleton.canSell)
+            {
+                Debug.Log("Sell");
+                player.playerCurrency += Blueprint.singleton.placedFurniture.furniturePrice;
+                Destroy(Blueprint.singleton.placedFurniture.transform.parent.gameObject);
+                Blueprint.singleton.placedFurniture = null;
+                canPlace = true;
+                Blueprint.singleton.MatChanger();
+            }
+        
         if(Input.GetButtonDown("Reload"))
         {
             rotation += rotAmount;

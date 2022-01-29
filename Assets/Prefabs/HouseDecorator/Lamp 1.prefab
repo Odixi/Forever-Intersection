@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2305950771557274796}
   - component: {fileID: 568743604628316262}
   - component: {fileID: 3795455151592556329}
+  - component: {fileID: 1602190399377134370}
   m_Layer: 8
   m_Name: LampMesh
   m_TagString: Furniture
@@ -102,6 +103,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: bfb623d1a0f6da64d9a118e1fd31f221, type: 3}
+--- !u!114 &1602190399377134370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081904633039208883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a759b6b2b255c5141ac284b68f1646c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  furniturePrice: 0
 --- !u!1 &2263093931848413451
 GameObject:
   m_ObjectHideFlags: 0
