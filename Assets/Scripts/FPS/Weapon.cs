@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private int magazineSize = 12;
     [SerializeField]
-    private int ammo = 100;
+    public int ammo = 100;
     // Seconds per round
     [SerializeField]
     private float fireRate = 0.5f;
@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     private Transform barrel;
     private new Camera camera;
     private float? lastShot;
-    private int ammoInMagazine = 0;
+    public int ammoInMagazine = 0;
     private bool reloading = false;
 
     // Start is called before the first frame update
