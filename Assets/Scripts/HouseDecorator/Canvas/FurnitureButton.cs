@@ -22,7 +22,12 @@ public class FurnitureButton : MonoBehaviour
         {
             Destroy(bluePrint);
         }
-        Instantiate(furniture.furnitureBlueprint, transform.position, Quaternion.identity);
+        GameObject furnitureObj = Instantiate(furniture.furnitureBlueprint, transform.position, Quaternion.identity);
+        Blueprint blueprintScript = furnitureObj.GetComponent<Blueprint>();
+        if(blueprintScript)
+        {
+            blueprintScript.houseDecorator = houseDecorator;
+        }   
         houseDecorator.currentFurniture = furniture.fullFurniture;
         houseDecorator.currentFurniturePrice = furniture.furniturePrice;
     }

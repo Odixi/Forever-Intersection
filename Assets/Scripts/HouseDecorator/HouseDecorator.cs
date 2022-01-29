@@ -10,6 +10,7 @@ public class HouseDecorator : MonoBehaviour
     public GameObject currentFurniture;
     public GameObject currentBlueprint;
     public int currentFurniturePrice;
+    public bool canPlace;
     
 
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class HouseDecorator : MonoBehaviour
     }
     public void PlayerInput()
     {
-        if(Input.GetMouseButtonDown(0) && currentFurniture != null)
+        if(Input.GetMouseButtonDown(0) && currentFurniture != null && canPlace)
         {
             if(player.playerCurrency >= currentFurniturePrice)
             {

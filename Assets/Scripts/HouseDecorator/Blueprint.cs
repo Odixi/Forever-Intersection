@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Blueprint : MonoBehaviour
 {
-    public bool canPlace = true;
+    public HouseDecorator houseDecorator;
     public LayerMask layerMask;
     public Material blueMat;
     public Material redMat;
@@ -12,7 +12,7 @@ public class Blueprint : MonoBehaviour
     
     private void Start()
     {
-        Debug.Log(canPlace);
+        houseDecorator.canPlace = true;
     }
     void Update()
     {
@@ -30,11 +30,13 @@ public class Blueprint : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Furniture"))
         {
+            houseDecorator.canPlace = false;
             blueprintRend.material.CopyPropertiesFromMaterial(redMat);
         } 
     }
     private void OnTriggerExit(Collider other)
         {
+            houseDecorator.canPlace = true;
             blueprintRend.material.CopyPropertiesFromMaterial(blueMat);
         }
     }
