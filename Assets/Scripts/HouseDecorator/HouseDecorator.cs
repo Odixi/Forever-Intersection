@@ -11,6 +11,8 @@ public class HouseDecorator : MonoBehaviour
     public GameObject currentBlueprint;
     public int currentFurniturePrice;
     public bool canPlace;
+    public float rotation;
+    public float rotAmount = 90f;
     
 
     // Update is called once per frame
@@ -29,13 +31,22 @@ public class HouseDecorator : MonoBehaviour
     }
     public void PlayerInput()
     {
-        if(Input.GetMouseButtonDown(0) && currentFurniture != null && canPlace)
+        if(Input.GetButtonDown("Fire1") && currentFurniture != null && canPlace)
         {
             if(player.playerCurrency >= currentFurniturePrice)
             {
             Instantiate(currentFurniture, transform.position, transform.rotation);
             player.playerCurrency -= currentFurniturePrice;
             } else Debug.Log("poor bastard no money");
+        }
+        if(Input.GetButtonDown("Reload"))
+        {
+            rotation += rotAmount;
+            if(rotation >= 360)
+            {
+                rotation = 0;
+            }
+            transform.rotation = Quaternion.Euler(0,rotation,0);
         }
     }
 }

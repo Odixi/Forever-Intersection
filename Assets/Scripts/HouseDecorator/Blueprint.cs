@@ -24,6 +24,7 @@ public class Blueprint : MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit raycastHit, 10000, layerMask))
         {
             transform.position = raycastHit.point;
+            transform.rotation = Quaternion.Euler(0,houseDecorator.rotation,0);
         }
     }
     private void OnTriggerEnter(Collider other)
