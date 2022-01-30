@@ -6,7 +6,6 @@ public class HouseDecorator : MonoBehaviour
 {
     public LayerMask layerMask;
     [SerializeField] private Camera mainCam;
-    [SerializeField] public DebugPlayer player;
     public int points = 0;
     public GameObject currentFurniture;
     public int currentFurniturePrice;
@@ -43,7 +42,7 @@ public class HouseDecorator : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1") && currentFurniture != null && canPlace)
         {
-            if(player.playerCurrency >= currentFurniturePrice)
+            if(PlayerResources.Gibs >= currentFurniturePrice)
             {
            GameObject placedFurnitureObj = Instantiate(currentFurniture, transform.position, transform.rotation);
            PlacedFurniture placedFurniture = placedFurnitureObj.GetComponentInChildren<PlacedFurniture>();
@@ -51,9 +50,9 @@ public class HouseDecorator : MonoBehaviour
             {
                placedFurniture.furniturePrice = currentFurniturePrice;
             }
-            player.playerCurrency -= currentFurniturePrice;
+            PlayerResources.Gibs -= currentFurniturePrice;
             }
-            if(player.playerCurrency < currentFurniturePrice)
+            if(PlayerResources.Gibs < currentFurniturePrice)
             {
                 canPlace = false;
                 Blueprint.singleton.MatChanger();
@@ -62,7 +61,7 @@ public class HouseDecorator : MonoBehaviour
         if(Input.GetButtonDown("Fire2") && currentFurniture != null && Blueprint.singleton.canSell)
             {
                 Debug.Log("Sell");
-                player.playerCurrency += Blueprint.singleton.placedFurniture.furniturePrice;
+                PlayerResources.Gibs += Blueprint.singleton.placedFurniture.furniturePrice;
                 Destroy(Blueprint.singleton.placedFurniture.transform.parent.gameObject);
                 Blueprint.singleton.placedFurniture = null;
                 canPlace = true;
