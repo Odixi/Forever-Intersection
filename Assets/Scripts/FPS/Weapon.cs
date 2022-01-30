@@ -30,8 +30,6 @@ public class Weapon : MonoBehaviour
     private float reloadSpeed = 1f;
     [SerializeField]
     private Camera raycastCamera;
-    private Transform barrel;
-    private new Camera camera;
     private float? lastShot;
     public int ammoInMagazine = 0;
     private bool reloading = false;
@@ -39,8 +37,6 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        barrel = transform.GetChild(0);
-        camera = Camera.main;
         ammoInMagazine = Mathf.Min(magazineSize, ammo);
     }
 

@@ -116,8 +116,10 @@ public class WorldBlock : MonoBehaviour
         return spaces;
     }
 
+    
     private void OnDrawGizmos()
     {
+        #if UNITY_EDITOR
         if (UnityEditor.Selection.activeObject != gameObject)
         {
             return;
@@ -162,5 +164,6 @@ public class WorldBlock : MonoBehaviour
             Gizmos.DrawLine(sf + new Vector3(0, 0, 1) * WorldGenerator.BlockSize,
                             sf + (Vector3.one - new Vector3(0, 0, 1)) * WorldGenerator.BlockSize);
         }
+        #endif
     }
 }
