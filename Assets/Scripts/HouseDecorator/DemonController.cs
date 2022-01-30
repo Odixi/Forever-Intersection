@@ -11,7 +11,7 @@ public class DemonController : MonoBehaviour
     public demonDifficulty demonDiff;
     public demonType demon;
     public HouseDecorator houseDecorator;
-    public GameObject hoverIndicator, demonLike, happyDemon, sadDemon, donut, ass, canvasThings, goToHell;
+    public GameObject hoverIndicator, demonLike, happyDemon, sadDemon, donut, ass, canvasThings, goToHell, helloText, helpText;
     public bool happyDemonPart = false;
     public string demonText;
     public Animator assAnimator, donutAnimator;
@@ -25,6 +25,7 @@ public class DemonController : MonoBehaviour
         demon = (demonType)Random.Range(0,3);
         demonDiff = (demonDifficulty)Random.Range(0,3);
         demonText = demon.ToString();
+        helloText.SetActive(true);
         CheckDifficulty();
     }
 
@@ -52,11 +53,12 @@ public class DemonController : MonoBehaviour
     void MoveDemonUpAndDown()
     {
         float y = Mathf.PingPong(Time.time * speed, 1) * range + 2f;
-        transform.position = new Vector3(0, y, 1.849f);
+        transform.position = new Vector3(0, y, 1.849f);   
     }
     public void DemonPreference(string furniType)
     {
-        Debug.Log(furniType);
+        helloText.SetActive(false);
+        helpText.SetActive(true);
         if(furniType == demonText)
         {
            houseDecorator.points += houseDecorator.currentFurnitureBasepoints * 2;
@@ -84,6 +86,8 @@ public class DemonController : MonoBehaviour
                           canvasThings.gameObject.SetActive(false);
                           goToHell.gameObject.SetActive(true);
                           demonLike.SetActive(false);
+                          helpText.SetActive(false);
+                          helloText.SetActive(false);
                           houseDecorator.currentFurniture = null;
                           Blueprint.singleton = null;
                       }
@@ -95,6 +99,8 @@ public class DemonController : MonoBehaviour
                           canvasThings.gameObject.SetActive(false);
                           goToHell.gameObject.SetActive(true);
                           demonLike.SetActive(false);
+                          helpText.SetActive(false);
+                          helloText.SetActive(false);
                           houseDecorator.currentFurniture = null;
                           Blueprint.singleton = null;
                       }            
