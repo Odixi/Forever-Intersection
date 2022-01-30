@@ -7,9 +7,10 @@ public class HouseDecorator : MonoBehaviour
     public LayerMask layerMask;
     [SerializeField] private Camera mainCam;
     [SerializeField] public DebugPlayer player;
-    [SerializeField] private DemonController demonController;
+    public int points = 0;
     public GameObject currentFurniture;
     public int currentFurniturePrice;
+    public int currentFurnitureBasepoints;
     public bool canPlace;
     public float rotation;
     public float rotAmount = 90f;
@@ -54,7 +55,7 @@ public class HouseDecorator : MonoBehaviour
                 Blueprint.singleton.MatChanger();
             }
         }
-        if(Input.GetButtonDown("Fire2") && currentFurniture != null &&Blueprint.singleton.canSell)
+        if(Input.GetButtonDown("Fire2") && currentFurniture != null && Blueprint.singleton.canSell)
             {
                 Debug.Log("Sell");
                 player.playerCurrency += Blueprint.singleton.placedFurniture.furniturePrice;

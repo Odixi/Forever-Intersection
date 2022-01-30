@@ -12,7 +12,7 @@ public class Blueprint : MonoBehaviour
     public Material redMat;
     public Renderer blueprintRend;
     public bool canSell = false;
-    
+ 
     private void Awake()
     {
         singleton = this;

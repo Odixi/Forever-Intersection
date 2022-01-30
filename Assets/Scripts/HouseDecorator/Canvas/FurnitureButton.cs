@@ -31,5 +31,6 @@ public class FurnitureButton : MonoBehaviour
         }   
         houseDecorator.currentFurniture = furniture.fullFurniture;
         houseDecorator.currentFurniturePrice = furniture.furniturePrice;
+        houseDecorator.currentFurnitureBasepoints = furniture.basePoints;
     }
 }
