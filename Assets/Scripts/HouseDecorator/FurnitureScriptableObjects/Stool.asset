@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stool
   m_EditorClassIdentifier: 
   furnitureName: Stool
-  furniturePrice: 3
+  furniturePrice: 6
   basePoints: 2
   fullFurniture: {fileID: 306669416304556212, guid: 82b786ed3f06fb449a7b092ed9574027,
     type: 3}

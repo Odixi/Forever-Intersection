@@ -5,5 +5,4 @@ using UnityEngine;
 public class DebugPlayer : MonoBehaviour
 {
     public int playerCurrency = 5;
-    
 }
