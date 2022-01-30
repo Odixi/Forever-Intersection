@@ -13,6 +13,8 @@ public class HouseDecorator : MonoBehaviour
     public bool canPlace;
     public float rotation;
     public float rotAmount = 90f;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     
     private void Start()
     {
@@ -76,6 +78,7 @@ public class HouseDecorator : MonoBehaviour
                 rotation = 0;
             }
             transform.rotation = Quaternion.Euler(0,rotation,0);
+            audioSource.PlayOneShot(audioClip);
         }
     }
 }
