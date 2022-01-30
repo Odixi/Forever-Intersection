@@ -102,7 +102,11 @@ public class Weapon : MonoBehaviour
         yield return null;
     }
 
-
+    private void OnDisable()
+    {
+        transform.localPosition = Vector3.zero;
+        reloading = false;
+    }
 
     void InstantiateBulletDecal(Vector3 position, Quaternion rotation, Transform parent)
     {
@@ -114,6 +118,8 @@ public class Weapon : MonoBehaviour
     {
         return !reloading && ammo != 0 && ammoInMagazine != magazineSize && Time.time > lastShot + fireRate;
     }
+
+    
 
     IEnumerator Reload()
     {
