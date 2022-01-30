@@ -34,9 +34,9 @@ public class Pickup : MonoBehaviour
     {
         var renderer = obj.GetComponent<MeshRenderer>();
         if (renderer != null) renderer.enabled = false;
-        for (var i = 0; i < gameObject.transform.childCount; i++)
+        for (var i = 0; i < obj.transform.childCount; i++)
         {
-            HideRenderers(gameObject.transform.GetChild(i).gameObject);
+            HideRenderers(obj.transform.GetChild(i).gameObject);
         }
     }
 
