@@ -14,7 +14,7 @@ public class HouseDecorator : MonoBehaviour
     public float rotation;
     public float rotAmount = 90f;
     public AudioSource audioSource;
-    public AudioClip audioClip;
+    public AudioClip audioClip, audioClipSell;
     
     private void Start()
     {
@@ -62,9 +62,9 @@ public class HouseDecorator : MonoBehaviour
         }
         if(Input.GetButtonDown("Fire2") && currentFurniture != null && Blueprint.singleton.canSell)
             {
-                Debug.Log("Sell");
                 PlayerResources.Gibs += Blueprint.singleton.placedFurniture.furniturePrice;
                 Destroy(Blueprint.singleton.placedFurniture.transform.parent.gameObject);
+                audioSource.PlayOneShot(audioClipSell);
                 Blueprint.singleton.placedFurniture = null;
                 canPlace = true;
                 Blueprint.singleton.MatChanger();

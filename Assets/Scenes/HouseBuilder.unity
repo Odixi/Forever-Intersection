@@ -14411,6 +14411,7 @@ MonoBehaviour:
   rotAmount: 90
   audioSource: {fileID: 1941539880}
   audioClip: {fileID: 8300000, guid: e755c49df17ac5c4c81a507446af9f3f, type: 3}
+  audioClipSell: {fileID: 8300000, guid: d434e119276e71047b9f73617de0618b, type: 3}
 --- !u!4 &1941539878
 Transform:
   m_ObjectHideFlags: 0
