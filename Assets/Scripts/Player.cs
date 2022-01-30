@@ -71,7 +71,16 @@ public class Player : MonoBehaviour
 
     private void ChangeToDecorationScene()
     {
+        SaveResources();
         SceneManager.LoadScene("HouseBuilder");
+    }
+
+    void SaveResources()
+    {
+        var pistol = weapons[0].GetComponent<Weapon>();
+        PlayerResources.PistolAmmo = pistol.ammo + pistol.magazineSize;
+        var shotgun = weapons[1].GetComponent<Weapon>();
+        PlayerResources.ShotgunAmmo = shotgun.ammo + shotgun.magazineSize;
     }
 
     private void SelectWeapon(int index)
@@ -130,9 +139,16 @@ public class Player : MonoBehaviour
             var pistol = weapons[0].GetComponent<Weapon>();
             PlayerResources.PistolAmmo = pistol.ammo + pistol.magazineSize;
             var shotgun = weapons[1].GetComponent<Weapon>();
-            PlayerResources.PistolAmmo = shotgun.ammo + shotgun.magazineSize;
+            PlayerResources.ShotgunAmmo = shotgun.ammo + shotgun.magazineSize;
             PlayerResources.Gibs = 0;
             PlayerResources.IsInstantiated = true;
+        }
+        else
+        {
+            var pistol = weapons[0].GetComponent<Weapon>();
+            pistol.ammo = PlayerResources.PistolAmmo - pistol.ammoInMagazine;
+            var shotgun = weapons[1].GetComponent<Weapon>();
+            shotgun.ammo = PlayerResources.ShotgunAmmo - shotgun.ammoInMagazine;
         }
         characterController = GetComponent<CharacterController>();
 
