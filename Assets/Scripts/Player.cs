@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private List<AudioClip> startVoiceLines;
+    [SerializeField]
+    private List<AudioClip> generalKillVoiceLines;
+    [SerializeField]
+    private List<AudioClip> donutKillVoiceLines;
+    [SerializeField]
+    private List<AudioClip> damageSounds;
     // Singleton
     public static Player Instance;
 
@@ -11,8 +19,11 @@ public class Player : MonoBehaviour
     public Weapon weapon;
     [SerializeField]
     private float maxHealth;
+    private float lastPlayedVoiceLine = 1f;
+    private float voiceLineMinInterval = 10f;
     public float Health { get; private set; }
 
+    private AudioSource audioSource;
     private CharacterController characterController;
 
     public Vector3 TargetPoint => characterController.bounds.center + 0.35f*Vector3.up;
@@ -52,11 +63,35 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnEnemyKill(Enemy enemy)
+    {
+        if (Time.time < lastPlayedVoiceLine + voiceLineMinInterval) return;
+        if (Random.Range(0f, 1f) > 0.3f) return;
+        if (enemy.gameObject.GetComponent<ShootingEnemy>() && Random.Range(0, donutKillVoiceLines.Count + generalKillVoiceLines.Count) == 0)
+        {
+            audioSource.clip = donutKillVoiceLines[Random.Range(0, donutKillVoiceLines.Count)];
+        } else
+        {
+            audioSource.clip = generalKillVoiceLines[Random.Range(0, generalKillVoiceLines.Count)];
+        }
+        audioSource.Play();
+    }
+
     public void Awake()
     {
         Instance = this;
         characterController = GetComponent<CharacterController>();
         Health = maxHealth;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        StartCoroutine(PlayStartSound());
+    }
+
+    IEnumerator PlayStartSound()
+    {
+        yield return new WaitForSeconds(1f);
+        audioSource.clip = startVoiceLines[Random.Range(0, startVoiceLines.Count)];
+        audioSource.Play();
+        yield return null;
     }
 
     public void TakeDamage(float damageAmount)
@@ -64,6 +99,8 @@ public class Player : MonoBehaviour
         print($"Ouch! You take {damageAmount} damage, resulting in {Health} health");
         HUDElementController.Instance.HurtTrigger();
         Health -= damageAmount;
+        audioSource.clip = damageSounds[Random.Range(0, damageSounds.Count)];
+        audioSource.Play();
         if (Health <= 0)
         {
             Die();

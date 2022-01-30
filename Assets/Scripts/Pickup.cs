@@ -12,14 +12,38 @@ public class Pickup : MonoBehaviour
 {
     public PickupType PickupType;
     public float Amount;
+    AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
         {
             Player.Instance.OnPickup(PickupType, Amount);
-            Destroy(gameObject);
+            audioSource.Play();
+            HideRenderers(gameObject);
+            StartCoroutine(DestroyOnAudioClipEnd());
         }
+    }
+
+    private void HideRenderers(GameObject obj)
+    {
+        var renderer = obj.GetComponent<MeshRenderer>();
+        if (renderer != null) renderer.enabled = false;
+        for (var i = 0; i < gameObject.transform.childCount; i++)
+        {
+            HideRenderers(gameObject.transform.GetChild(i).gameObject);
+        }
+    }
+
+    IEnumerator DestroyOnAudioClipEnd()
+    {
+        yield return new WaitForSeconds(audioSource.clip.length);
+        Destroy(gameObject);
+        yield return null;
     }
 }
