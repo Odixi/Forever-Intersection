@@ -41,7 +41,7 @@ public class Blueprint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Furniture"))
+        if(other.gameObject.CompareTag("Furniture") || other.gameObject.CompareTag("DemonWaifu"))
         {
             houseDecorator.canPlace = false;
             MatChanger();
