@@ -68,6 +68,7 @@ public abstract class Enemy : MonoBehaviour
     private void Die()
     {
         OnAboutToDie();
+        Player.Instance.OnEnemyKill(this);
         Destroy(gameObject);
     }
 

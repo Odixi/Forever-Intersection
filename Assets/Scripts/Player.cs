@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     {
         if (Time.time < lastPlayedVoiceLine + voiceLineMinInterval) return;
         if (Random.Range(0f, 1f) > 0.3f) return;
+        lastPlayedVoiceLine = Time.time;
         if (enemy.gameObject.GetComponent<ShootingEnemy>() && Random.Range(0, donutKillVoiceLines.Count + generalKillVoiceLines.Count) == 0)
         {
             audioSource.clip = donutKillVoiceLines[Random.Range(0, donutKillVoiceLines.Count)];
