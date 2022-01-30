@@ -1520,12 +1520,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ce1c9be9b05120a42bc2a1fbd9b8a27c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce1c9be9b05120a42bc2a1fbd9b8a27c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: ce1c9be9b05120a42bc2a1fbd9b8a27c,
         type: 3}
@@ -1792,6 +1792,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  recoilAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.4999995
+      outSlope: 7.4999995
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.13333334
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.26442307
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.1538461
+      outSlope: -1.1538461
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   bulletDecals:
   - {fileID: 996193773816394004, guid: cb48c662d96df4449a4a92162cdfe3da, type: 3}
   - {fileID: 996193773816394004, guid: aa8965508cb80d446a7cf47d1019bd13, type: 3}
@@ -1805,6 +1838,7 @@ MonoBehaviour:
   fireRate: 1
   reloadSpeed: 1
   raycastCamera: {fileID: 1701170021}
+  recoil: 0.4
   ammoInMagazine: 2
 --- !u!4 &6738981159630100808 stripped
 Transform:
@@ -2139,6 +2173,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  recoilAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.272728
+      outSlope: 7.272728
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.13749999
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.1594203
+      outSlope: -1.1594203
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   bulletDecals:
   - {fileID: 996193773816394004, guid: cb48c662d96df4449a4a92162cdfe3da, type: 3}
   - {fileID: 996193773816394004, guid: aa8965508cb80d446a7cf47d1019bd13, type: 3}
@@ -2149,9 +2216,10 @@ MonoBehaviour:
   spread: 0
   magazineSize: 12
   ammo: 100
-  fireRate: 0.5
+  fireRate: 0.2
   reloadSpeed: 1
   raycastCamera: {fileID: 1701170021}
+  recoil: 0.1
   ammoInMagazine: 0
 --- !u!4 &6738981158717868674 stripped
 Transform:

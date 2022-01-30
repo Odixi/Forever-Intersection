@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private AnimationCurve reloadAnimationCurve;
     [SerializeField]
+    private AnimationCurve recoilAnimationCurve;
+    [SerializeField]
     private List<GameObject> bulletDecals;
     [SerializeField]
     private AudioSource shootAudioSource;
@@ -30,7 +32,10 @@ public class Weapon : MonoBehaviour
     private float reloadSpeed = 1f;
     [SerializeField]
     private Camera raycastCamera;
+    [SerializeField]
+    private float recoil = 0.4f;
     private float? lastShot;
+    private Quaternion initialLocalRotation;
     public int ammoInMagazine = 0;
     private bool reloading = false;
 
@@ -38,6 +43,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         ammoInMagazine = Mathf.Min(magazineSize, ammo);
+        initialLocalRotation = transform.localRotation;
     }
 
     // Update is called once per frame
@@ -76,8 +82,24 @@ public class Weapon : MonoBehaviour
             }
             ammoInMagazine--;
             lastShot = Time.time;
+            StartCoroutine(Recoil());
         }
     }
+
+    IEnumerator Recoil()
+    {
+        while (Time.time < lastShot + fireRate)
+        {
+            var scaledTimeSinceShot = (Time.time - (float)lastShot) / fireRate;
+            var appliedRecoil = recoil * recoilAnimationCurve.Evaluate(scaledTimeSinceShot);
+            transform.localPosition = new Vector3(0, 0, -appliedRecoil);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.localPosition = Vector3.zero;
+        yield return null;
+    }
+
+
 
     void InstantiateBulletDecal(Vector3 position, Quaternion rotation, Transform parent)
     {
@@ -87,7 +109,7 @@ public class Weapon : MonoBehaviour
 
     bool canReload()
     {
-        return !reloading && ammo != 0 && ammoInMagazine != magazineSize;
+        return !reloading && ammo != 0 && ammoInMagazine != magazineSize && Time.time > lastShot + fireRate;
     }
 
     IEnumerator Reload()
