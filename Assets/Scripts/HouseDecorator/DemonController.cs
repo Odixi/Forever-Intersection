@@ -11,7 +11,8 @@ public class DemonController : MonoBehaviour
     public demonDifficulty demonDiff;
     public demonType demon;
     public HouseDecorator houseDecorator;
-    public GameObject hoverIndicator, happyDemon, sadDemon, donut, ass, canvasThings;
+    public GameObject hoverIndicator, demonLike, happyDemon, sadDemon, donut, ass, canvasThings, goToHell;
+    public bool happyDemonPart = false;
     public string demonText;
     public Animator assAnimator, donutAnimator;
     public float speed;
@@ -59,7 +60,8 @@ public class DemonController : MonoBehaviour
         if(furniType == demonText)
         {
            houseDecorator.points += houseDecorator.currentFurnitureBasepoints * 2;
-        }
+           demonLike.SetActive(true);
+        } else demonLike.SetActive(false);
 
     }
     public void CheckIfPlayerTouchesMe()
@@ -80,6 +82,8 @@ public class DemonController : MonoBehaviour
                           donut.gameObject.SetActive(false);
                           ass.gameObject.SetActive(false);
                           canvasThings.gameObject.SetActive(false);
+                          goToHell.gameObject.SetActive(true);
+                          demonLike.SetActive(false);
                           houseDecorator.currentFurniture = null;
                           Blueprint.singleton = null;
                       }
@@ -89,6 +93,8 @@ public class DemonController : MonoBehaviour
                           donut.gameObject.SetActive(false);
                           ass.gameObject.SetActive(false);
                           canvasThings.gameObject.SetActive(false);
+                          goToHell.gameObject.SetActive(true);
+                          demonLike.SetActive(false);
                           houseDecorator.currentFurniture = null;
                           Blueprint.singleton = null;
                       }            
