@@ -81,6 +81,7 @@ public abstract class Enemy : MonoBehaviour
     private void Die()
     {
         OnAboutToDie();
+        gameObject.GetComponent<Collider>().enabled = false;
         isDead = true;
         Player.Instance.OnEnemyKill(this);
 
@@ -88,7 +89,25 @@ public abstract class Enemy : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = dieSound;
         audioSource.Play();
+        StartCoroutine(DeleteSpriteRendersDelayed());
         StartCoroutine(DestroyAfterSound());
+    }
+
+    private void DeleteSpriteRenders(GameObject obj)
+    {
+        var spriteRenderer = obj.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
+        for (var i = 0; i < obj.transform.childCount; i++)
+        {
+            DeleteSpriteRenders(obj.transform.GetChild(i).gameObject);
+        }
+    }
+
+    IEnumerator DeleteSpriteRendersDelayed()
+    {
+        yield return new WaitForSeconds(0.5f);
+        DeleteSpriteRenders(gameObject);
+        yield return null;
     }
 
     IEnumerator DestroyAfterSound()
