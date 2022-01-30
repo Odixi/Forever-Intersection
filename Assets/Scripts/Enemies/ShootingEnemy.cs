@@ -14,11 +14,28 @@ public class ShootingEnemy : Enemy
     [SerializeField]
     private GameObject projectilePrefab;
 
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    Sprite idleSprite;
+    [SerializeField]
+    Sprite shootSprite;
+
+    [SerializeField]
+    Transform shootFrom;
+
+    [SerializeField]
+    AudioClip shootClip;
+
+    private AudioSource audioSource;
+
     private float lastShot;
 
     private void Start()
     {
         lastShot = Time.time;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,9 +68,18 @@ public class ShootingEnemy : Enemy
     void Shoot()
     {
         lastShot = Time.time;
-        var go = Instantiate(projectilePrefab, eyes.position, Quaternion.identity);
+        var go = Instantiate(projectilePrefab, shootFrom.position, Quaternion.identity);
         var projectile = go.GetComponent<Projectile>();
         projectile.Direction = (Player.Instance.TargetPoint - eyes.position).normalized;
+        audioSource.PlayOneShot(shootClip);
+        StartCoroutine(shootAnimation());
+    }
+
+    IEnumerator shootAnimation()
+    {
+        spriteRenderer.sprite = shootSprite;
+        yield return new WaitForSeconds(0.5f);
+        spriteRenderer.sprite = idleSprite;
     }
 
 

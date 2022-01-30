@@ -38,7 +38,7 @@ public class ChasingEnemy : Enemy
 
         if (hasSeenPlayer)
         {
-            
+            attackAnim.SetBool("Running", true);
             if ((playerCamera.transform.position - eyes.position).magnitude < 2.8f && !isAttacking)
             {
                 StartCoroutine(Attack());
