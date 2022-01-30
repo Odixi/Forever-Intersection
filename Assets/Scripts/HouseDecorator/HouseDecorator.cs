@@ -15,7 +15,11 @@ public class HouseDecorator : MonoBehaviour
     public float rotation;
     public float rotAmount = 90f;
     
-
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
     // Update is called once per frame
     void Update()
     {
