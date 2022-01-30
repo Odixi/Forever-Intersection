@@ -534,7 +534,12 @@ MonoBehaviour:
   - {fileID: 7930107945850212715, guid: e379c7422d22b6d4991abf38616f9938, type: 3}
   - {fileID: 2570229957575422106, guid: e64cd766a46220444951b8361f105b2c, type: 3}
   - {fileID: 6783609386392868191, guid: 943c62e71f859b54db7693ce8aa6b56d, type: 3}
-  StartBlock: {fileID: 7930107945850212715, guid: 4af3b3752480c9e4fac47e57be0c8e2a,
+  - {fileID: 2971489870802386627, guid: c2d86bde288992d48a688e8ed3cdcf2e, type: 3}
+  - {fileID: 3753126930045427604, guid: a1cd908f4feab8a45b5bce5e3d3933f9, type: 3}
+  - {fileID: 7930107945850212715, guid: d4573e1fd84cdd947be13aae35efd6ff, type: 3}
+  StartBlock: {fileID: 7930107945850212715, guid: e379c7422d22b6d4991abf38616f9938,
+    type: 3}
+  EndBlock: {fileID: 7930107945850212715, guid: 4af3b3752480c9e4fac47e57be0c8e2a,
     type: 3}
   WallPrefab: {fileID: 9107600221058385530, guid: 09506a71daeb17c4792ad30c603b33ce,
     type: 3}
@@ -544,7 +549,7 @@ MonoBehaviour:
   PickupPrefabs:
   - {fileID: 5825697619503466862, guid: 82be85b83611c974da253dadfd26ec4d, type: 3}
   - {fileID: 7651767188034324919, guid: 2ded5f2a287c50d41afbaf4eb6be0070, type: 3}
-  MaxDepth: 10
+  MaxDepth: 7
   EnemySpawnChancePerRoom: 0.2
   PickupSpawnChance: 0.2
 --- !u!4 &1026278154
