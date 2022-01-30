@@ -34,6 +34,8 @@ public class Weapon : MonoBehaviour
     private Camera raycastCamera;
     [SerializeField]
     private float recoil = 0.4f;
+    [SerializeField]
+    private Transform barrelEnd;
     private float? lastShot;
     private Quaternion initialLocalRotation;
     public int ammoInMagazine = 0;
@@ -68,6 +70,7 @@ public class Weapon : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     InstantiateBulletDecal(hit.point, Quaternion.LookRotation(hit.point - transform.position), hit.collider.transform);
+                    BulletTrail.Create(barrelEnd.position, hit.point);
                     if (hit.collider.tag == "Enemy")
                     {
                         var enemy = hit.collider.gameObject.GetComponent<Enemy>();
