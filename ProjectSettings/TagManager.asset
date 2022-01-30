@@ -8,6 +8,7 @@ TagManager:
   - Furniture
   - Barrel
   - Blueprint
+  - House
   layers:
   - Default
   - TransparentFX

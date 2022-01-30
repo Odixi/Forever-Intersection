@@ -118,7 +118,6 @@ public class Weapon : MonoBehaviour
     {
         return !reloading && ammo != 0 && ammoInMagazine != magazineSize && Time.time > lastShot + fireRate;
     }
-
     
 
     IEnumerator Reload()

@@ -189,6 +189,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 2}
   - {x: 2, y: 0, z: -1}
   EnemySpawnPoint: {fileID: 4672981208087579813}
+  PickupSpawnPoints: []
   IsEndWall: 0
 --- !u!1 &9176370723842816597
 GameObject:
@@ -368,6 +369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mokki
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 917197a8da549fc4092679eadeff999b,
+        type: 3}
+      propertyPath: m_TagString
+      value: House
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 917197a8da549fc4092679eadeff999b, type: 3}
