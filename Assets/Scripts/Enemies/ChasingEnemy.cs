@@ -11,7 +11,7 @@ public class ChasingEnemy : Enemy
     [SerializeField]
     private float MoveSpeed = 0.035f;
     [SerializeField]
-    private Animator attackAnim;
+    private Animator animator;
     private AudioSource audioSource;
     [SerializeField]
     private AudioClip attackAudio;
@@ -24,7 +24,11 @@ public class ChasingEnemy : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (this.isDead) return;
+        if (this.isDead)
+        {
+            animator.SetBool("Dead", true);
+            return;
+        }
         bool seesPlayer = IsPlayerInSight(25);
         if (seesPlayer)
         {
@@ -48,7 +52,7 @@ public class ChasingEnemy : Enemy
 
         if (hasSeenPlayer)
         {
-            attackAnim.SetBool("Running", true);
+            animator.SetBool("Running", true);
             if ((playerCamera.transform.position - eyes.position).magnitude < 2.8f && !isAttacking)
             {
                 StartCoroutine(Attack());
@@ -61,7 +65,7 @@ public class ChasingEnemy : Enemy
     IEnumerator Attack()
     {
         isAttacking = true;
-        attackAnim.SetTrigger("Attack");
+        animator.SetTrigger("Attack");
         audioSource.PlayOneShot(attackAudio);
         yield return new WaitForSeconds(0.12f);
         if ((playerCamera.transform.position - eyes.position).magnitude < 2.2f)

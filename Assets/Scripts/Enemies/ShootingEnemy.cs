@@ -19,6 +19,9 @@ public class ShootingEnemy : Enemy
     SpriteRenderer spriteRenderer;
 
     [SerializeField]
+    Sprite dyeSprite;
+
+    [SerializeField]
     Sprite idleSprite;
     [SerializeField]
     Sprite shootSprite;
@@ -42,7 +45,11 @@ public class ShootingEnemy : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (this.isDead) return;
+        if (this.isDead)
+        {
+            spriteRenderer.sprite = dyeSprite;
+            return;
+        }
         bool seesPlayer = IsPlayerInSight();
         if (seesPlayer)
         {

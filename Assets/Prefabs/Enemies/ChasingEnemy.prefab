@@ -158,7 +158,7 @@ MonoBehaviour:
   eyes: {fileID: 9136933485056818667}
   dieSound: {fileID: 8300000, guid: 548da771c75fa3f40a5f3bd276a9c6ba, type: 3}
   MoveSpeed: 0.075
-  attackAnim: {fileID: 1271744016848217341}
+  animator: {fileID: 1271744016848217341}
   attackAudio: {fileID: 8300000, guid: 235eb7a4b50059d47ac196379b954ad6, type: 3}
 --- !u!136 &3140249277037987151
 CapsuleCollider:
