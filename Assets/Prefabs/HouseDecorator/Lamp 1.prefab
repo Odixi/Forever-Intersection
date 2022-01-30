@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a759b6b2b255c5141ac284b68f1646c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
+  furniType: 
   furniturePrice: 0
 --- !u!1 &2263093931848413451
 GameObject:

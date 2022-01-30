@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Sofa
   m_EditorClassIdentifier: 
   furnitureName: Sofa
-  furniturePrice: 3
+  furniturePrice: 7
+  basePoints: 5
   fullFurniture: {fileID: 4848297120139914362, guid: fc1a84b4160880249b3e14ff63f8ae6c,
     type: 3}
   furnitureBlueprint: {fileID: 1981462674368550960, guid: 8a648c779af0aed44a51094b8990a7ef,

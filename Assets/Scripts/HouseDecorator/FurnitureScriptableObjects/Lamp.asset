@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Lamp
   m_EditorClassIdentifier: 
   furnitureName: Lamp
-  furniturePrice: 3
+  furniturePrice: 5
+  basePoints: 3
   fullFurniture: {fileID: 2263093931848413451, guid: 8222942adb0d89c4b9cf533558f1eb76,
     type: 3}
   furnitureBlueprint: {fileID: 4320087582846496963, guid: 83c82f688021bbb4fbb30ec3ed298e16,

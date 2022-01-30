@@ -7,6 +7,7 @@ public class Furniture : ScriptableObject
 {
   public string furnitureName;
   public int furniturePrice;
+  public int basePoints;
   public GameObject fullFurniture;
   public GameObject furnitureBlueprint;
 }
