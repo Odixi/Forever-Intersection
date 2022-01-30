@@ -8,12 +8,28 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     [SerializeField]
+    private List<GameObject> weapons;
+    [SerializeField]
     private float maxHealth;
     public float Health { get; private set; }
 
     private CharacterController characterController;
 
     public Vector3 TargetPoint => characterController.bounds.center + 0.35f*Vector3.up;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !weapons[0].activeInHierarchy)
+        {
+            foreach (var weapon in weapons) weapon.SetActive(false);
+            weapons[0].SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !weapons[1].activeInHierarchy)
+        {
+            foreach (var weapon in weapons) weapon.SetActive(false);
+            weapons[1].SetActive(true);
+        }
+    }
 
     public void Awake()
     {
