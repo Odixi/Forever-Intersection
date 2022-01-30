@@ -542,7 +542,6 @@ MonoBehaviour:
   ammoAll: {fileID: 1523953938}
   health: {fileID: 884532401}
   gibleds: {fileID: 397352903}
-  player: {fileID: 2125879220766651569}
   debugHealth: 0
   weapon: {fileID: 7991023123405038278}
 --- !u!1 &1414354457
@@ -632,7 +631,7 @@ Animator:
   m_GameObject: {fileID: 1414354457}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 71c137a6140d0aa49bfdc16f2e8f3010, type: 2}
+  m_Controller: {fileID: 9100000, guid: b9d788ebac7043d47b1352b5204628cb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1261,37 +1260,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4335787326996300423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6299820130891941502}
-  m_Layer: 0
-  m_Name: Barrel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6299820130891941502
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335787326996300423}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2328, z: 0.0573}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6738981158717868674}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6489426296721286117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1460,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9831e9be266494296f92b44c4e14a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 6255072191115530296}
+  - {fileID: 6255072191411192818}
+  weapon: {fileID: 447501324}
   maxHealth: 100
 --- !u!1001 &6489426296407342755
 PrefabInstance:

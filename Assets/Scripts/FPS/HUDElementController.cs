@@ -8,14 +8,14 @@ public class HUDElementController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     public TextMeshProUGUI ammoCurrentMag, ammoAll, health, gibleds;
-    public Player player;
     public float debugHealth;
     public Weapon weapon;
 
-    // Start is called before the first frame update
-    void Start()
+    public static HUDElementController Instance;
+
+    private void Awake()
     {
-        player = Player.Instance;
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -24,27 +24,35 @@ public class HUDElementController : MonoBehaviour
         UpdatePlayerResources();
         ChangePlayerFace();
     }
+
     void UpdatePlayerResources()
     {
-        health.text = player.Health.ToString();
+        weapon = Player.Instance.weapon;
+        health.text = Player.Instance.Health.ToString();
         ammoCurrentMag.text = weapon.ammoInMagazine.ToString();
-        ammoAll.text = weapon.ammo.ToString();      
+        ammoAll.text = weapon.ammo.ToString();
     }
+
+    public bool IsExcited() => animator.GetBool("Excited");
+    public void SetExcited(bool value) => animator.SetBool("Excited", value);
+
+    public void HurtTrigger() => animator.SetTrigger("Damage");
+
     void ChangePlayerFace()
     {
-        if(debugHealth >= 80f)
+        if(Player.Instance.Health >= 80f)
         {
             animator.SetBool("Full", true);
             animator.SetBool("Medium", false);
             animator.SetBool("Low", false);
         }
-        if(debugHealth >= 30 && debugHealth <= 79f)
+        if(Player.Instance.Health >= 30 && Player.Instance.Health <= 79f)
         {
             animator.SetBool("Full", false);
             animator.SetBool("Medium", true);
             animator.SetBool("Low", false);
         }
-        if(debugHealth >= 0 && debugHealth <= 29f)
+        if(Player.Instance.Health >= 0 && Player.Instance.Health <= 29f)
         {
             animator.SetBool("Full", false);
             animator.SetBool("Medium", false);

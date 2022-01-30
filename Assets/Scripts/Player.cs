@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     // Singleton
     public static Player Instance;
 
-    [SerializeField]
-    private List<GameObject> weapons;
+    public List<GameObject> weapons;
+    public Weapon weapon;
     [SerializeField]
     private float maxHealth;
     public float Health { get; private set; }
@@ -19,27 +19,30 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !weapons[0].activeInHierarchy)
-        {
-            foreach (var weapon in weapons) weapon.SetActive(false);
-            weapons[0].SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !weapons[1].activeInHierarchy)
-        {
-            foreach (var weapon in weapons) weapon.SetActive(false);
-            weapons[1].SetActive(true);
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectWeapon(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectWeapon(1);
+    }
+
+    private void SelectWeapon(int index)
+    {
+        var selectedWeapon = weapons[index];
+        if (selectedWeapon.activeInHierarchy) return;
+        foreach (var weapon in weapons) weapon.SetActive(false);
+        weapon = selectedWeapon.GetComponent<Weapon>();
+        selectedWeapon.SetActive(true);
     }
 
     public void Awake()
     {
         Instance = this;
         characterController = GetComponent<CharacterController>();
+        Health = maxHealth;
     }
 
     public void TakeDamage(float damageAmount)
     {
         print($"Ouch! You take {damageAmount} damage, resulting in {Health} health");
+        HUDElementController.Instance.HurtTrigger();
         Health -= damageAmount;
         if (Health <= 0)
         {

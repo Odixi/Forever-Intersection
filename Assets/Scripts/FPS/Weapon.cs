@@ -65,6 +65,7 @@ public class Weapon : MonoBehaviour
                     if (hit.collider.tag == "Enemy")
                     {
                         var enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                        if (enemy.Health <= damagePerBullet && !HUDElementController.Instance.IsExcited()) StartCoroutine(ExcitedHud());
                         enemy.TakeDamage(damagePerBullet);
                     }
                     if (hit.collider.tag == "Barrel")
@@ -76,6 +77,14 @@ public class Weapon : MonoBehaviour
             ammoInMagazine--;
             lastShot = Time.time;
         }
+    }
+
+    IEnumerator ExcitedHud()
+    {
+        HUDElementController.Instance.SetExcited(true);
+        yield return new WaitForSeconds(2);
+        HUDElementController.Instance.SetExcited(false);
+        yield return null;
     }
 
     void InstantiateBulletDecal(Vector3 position, Quaternion rotation, Transform parent)
