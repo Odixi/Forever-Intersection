@@ -33,8 +33,21 @@ public class HUDElementController : MonoBehaviour
         ammoAll.text = weapon.ammo.ToString();
     }
 
-    public bool IsExcited() => animator.GetBool("Excited");
-    public void SetExcited(bool value) => animator.SetBool("Excited", value);
+    private bool IsExcited() => animator.GetBool("Excited");
+    private void SetExcited(bool value) => animator.SetBool("Excited", value);
+
+    public void GetExcited()
+    {
+        if (!IsExcited()) StartCoroutine(ExcitedCoroutine());
+    }
+
+    IEnumerator ExcitedCoroutine()
+    {
+        SetExcited(true);
+        yield return new WaitForSeconds(2);
+        SetExcited(false);
+        yield return null;
+    }
 
     public void HurtTrigger() => animator.SetTrigger("Damage");
 
