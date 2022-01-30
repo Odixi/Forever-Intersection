@@ -31,6 +31,8 @@ public class WorldGenerator : MonoBehaviour
 
     private bool isEndBlockPlaced = false;
 
+    private float LevelMultiplier => (1.0f + (((float)PlayerResources.Level-1.0f) * 0.1f));
+
 
     private bool cont = false;
 
@@ -87,7 +89,7 @@ public class WorldGenerator : MonoBehaviour
             if (block.Neighbors[i] != null){
                 continue;
             }
-            if (depth > MaxDepth)
+            if (depth > MaxDepth*LevelMultiplier)
             {
                 if (!isEndBlockPlaced)
                 {
@@ -113,7 +115,7 @@ public class WorldGenerator : MonoBehaviour
                 continue;
             }
             // Spawn an enemy
-            if (depth > 4 && Random.value < EnemySpawnChancePerRoom)
+            if (depth > 4 && Random.value < EnemySpawnChancePerRoom*LevelMultiplier)
             {
                 Instantiate(EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count)], newBlock.EnemySpawnPoint.position, Quaternion.identity);
             }
@@ -121,7 +123,7 @@ public class WorldGenerator : MonoBehaviour
             // Add pickups
             foreach(var pickupSpawnPoint in newBlock.PickupSpawnPoints)
             {
-                if (Random.value < PickupSpawnChance)
+                if (Random.value < PickupSpawnChance - (PickupSpawnChance*(1-LevelMultiplier)))
                 {
                     Instantiate(PickupPrefabs[Random.Range(0, PickupPrefabs.Count)], pickupSpawnPoint.position, pickupSpawnPoint.rotation);
                 }

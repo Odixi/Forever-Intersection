@@ -6,6 +6,7 @@ public class ShootingEnemy : Enemy
 {
     private bool hasSeenPlayer = false;
     private int framesSeen = 0;
+    private int framesNotSeen = 0;
     [SerializeField]
     private float MoveSpeed = 0.008f;
     [SerializeField]
@@ -41,17 +42,25 @@ public class ShootingEnemy : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!hasSeenPlayer && IsPlayerInSight())
+        bool seesPlayer = IsPlayerInSight();
+        if (seesPlayer)
         {
+            framesNotSeen = 0;
             framesSeen++;
-            if (framesSeen >= 8)
-            {
-                hasSeenPlayer = true;
-            }
         }
         else
         {
             framesSeen = 0;
+            framesNotSeen++;
+        }
+
+        if (!hasSeenPlayer && framesSeen >= 8)
+        {
+           hasSeenPlayer = true;
+        }
+        if (hasSeenPlayer && framesNotSeen >= 150)
+        {
+            hasSeenPlayer = false;
         }
 
         if (hasSeenPlayer)
@@ -90,7 +99,7 @@ public class ShootingEnemy : Enemy
 
     protected override void OnTakeDamage(float damageAmount)
     {
-        // Animate
+        hasSeenPlayer = true;
 
     }
 }

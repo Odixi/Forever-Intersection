@@ -38,10 +38,16 @@ public abstract class Enemy : MonoBehaviour
         transform.position += amount * moveDirection.normalized;
     }
 
-    protected bool IsPlayerInSight()
+    protected bool IsPlayerInSight(float maxDistance = 100)
     {
         var d = playerCamera.transform.position - eyes.position;
-        return !Physics.Raycast(eyes.position, d, d.magnitude-0.5f);
+        var mag = d.magnitude;
+        if (mag > maxDistance)
+        {
+            return false;
+        }
+        var res = Physics.Raycast(eyes.position, d, out var hit, mag);
+        return !res || hit.collider.gameObject.tag == "Player";
     }
 
     public bool TakeDamage(float damageAmount)
