@@ -5,7 +5,7 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     public float sensitivity = 2f;
-    private float speed = 5f;
+    private float speed = 6.5f;
     private new Camera camera;
     private CharacterController controller;
     private float cameraPitch = 0f;

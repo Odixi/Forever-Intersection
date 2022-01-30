@@ -31,8 +31,9 @@ public class HUDElementController : MonoBehaviour
     {
         weapon = Player.Instance.weapon;
         health.text = Player.Instance.Health.ToString();
-        ammoCurrentMag.text =  $"{weapon.ammoInMagazine}/{weapon.ammo}";
+        ammoCurrentMag.text =  $"{weapon.ammoInMagazine}";
         ammoAll.text = weapon.ammo.ToString();
+        gibleds.text = PlayerResources.Gibs.ToString();
         pressEtoEnter.SetActive(Player.Instance.LooksAtHouse);
     }
 

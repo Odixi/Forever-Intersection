@@ -101,6 +101,8 @@ public class Player : MonoBehaviour
 
     public void OnEnemyKill(Enemy enemy)
     {
+        PlayerResources.Gibs += 10;
+
         if (Time.time < lastPlayedVoiceLine + voiceLineMinInterval) return;
         if (Random.Range(0f, 1f) > 0.3f) return;
         lastPlayedVoiceLine = Time.time;

@@ -13,7 +13,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected Camera playerCamera;
 
-
     private void Awake()
     {
         Health = maxHealth;
@@ -47,6 +46,11 @@ public abstract class Enemy : MonoBehaviour
 
     public bool TakeDamage(float damageAmount)
     {
+        if (Health <= 0)
+        {
+            // Already ded
+            return false;
+        }
         Health -= damageAmount;
 
         OnTakeDamage(damageAmount);

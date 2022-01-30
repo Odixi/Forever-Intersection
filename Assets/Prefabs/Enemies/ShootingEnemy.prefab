@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343d51c553fb8341a91864de6de66e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 150
   eyes: {fileID: 1028694822325201479}
   MoveSpeed: 0.008
   FireCooldown: 2

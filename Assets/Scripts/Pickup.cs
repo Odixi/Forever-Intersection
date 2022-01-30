@@ -14,6 +14,8 @@ public class Pickup : MonoBehaviour
     public float Amount;
     AudioSource audioSource;
 
+    private bool isAlreadyTaken = false;
+
     private void Awake()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -21,12 +23,13 @@ public class Pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (!isAlreadyTaken && collider.gameObject.tag == "Player")
         {
             Player.Instance.OnPickup(PickupType, Amount);
             audioSource.Play();
             HideRenderers(gameObject);
             StartCoroutine(DestroyOnAudioClipEnd());
+            isAlreadyTaken = true;
         }
     }
 

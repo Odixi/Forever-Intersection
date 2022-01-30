@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5858daeadb3448e45891184570ade6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 75
   eyes: {fileID: 9136933485056818667}
-  MoveSpeed: 0.05
+  MoveSpeed: 0.075
   attackAnim: {fileID: 1271744016848217341}
   attackAudio: {fileID: 8300000, guid: 235eb7a4b50059d47ac196379b954ad6, type: 3}
 --- !u!136 &3140249277037987151

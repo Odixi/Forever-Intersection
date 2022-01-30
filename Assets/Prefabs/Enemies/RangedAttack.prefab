@@ -4890,8 +4890,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
-  Speed: 6
-  Damage: 5
+  Speed: 8
+  Damage: 10
   MaxTimeAlive: 5
 --- !u!1 &899300960218878099
 GameObject:
