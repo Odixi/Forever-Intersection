@@ -7,12 +7,13 @@ using UnityEngine;
 public class FurnitureButton : MonoBehaviour
 {
     [SerializeField] private HouseDecorator houseDecorator;
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI nameText, price;
     public Furniture furniture;
 
     private void Start()
     {
         nameText.text = furniture.furnitureName;
+        price.text = furniture.furniturePrice.ToString();
     }
 
     public void OnClick()
