@@ -1,6 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public static class PlayerResources
+{
+    public static bool IsInstantiated = false;
+
+    public static float Health;
+    public static int PistolAmmo; // Save here when changing scenes!
+    public static int ShotgunAmmo;
+    public static int Gibs;
+
+    public static int Level;
+}
 
 public class Player : MonoBehaviour
 {
@@ -21,10 +34,13 @@ public class Player : MonoBehaviour
     private float maxHealth;
     private float lastPlayedVoiceLine = 1f;
     private float voiceLineMinInterval = 10f;
-    public float Health { get; private set; }
+    public float Health { get => PlayerResources.Health; set => PlayerResources.Health = value; }
+    public bool LooksAtHouse { get; private set; } = false;
+
 
     private AudioSource audioSource;
     private CharacterController characterController;
+    Camera mainCamera;
 
     public Vector3 TargetPoint => characterController.bounds.center + 0.35f*Vector3.up;
 
@@ -32,6 +48,26 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) SelectWeapon(0);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SelectWeapon(1);
+
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out var hit, 2) 
+            && hit.collider?.gameObject?.tag == "House")
+        {
+            LooksAtHouse = true;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ChangeToDecorationScene();
+                return;
+            }
+        }
+        else
+        {
+            LooksAtHouse = false;
+        }
+    }
+
+    private void ChangeToDecorationScene()
+    {
+        SceneManager.LoadScene("HouseBuilder");
     }
 
     private void SelectWeapon(int index)
@@ -81,8 +117,20 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        if (!PlayerResources.IsInstantiated)
+        {
+            PlayerResources.Level = 1;
+            PlayerResources.Health = maxHealth;
+            var pistol = weapons[0].GetComponent<Weapon>();
+            PlayerResources.PistolAmmo = pistol.ammo + pistol.magazineSize;
+            var shotgun = weapons[1].GetComponent<Weapon>();
+            PlayerResources.PistolAmmo = shotgun.ammo + shotgun.magazineSize;
+            PlayerResources.Gibs = 0;
+            PlayerResources.IsInstantiated = true;
+        }
         characterController = GetComponent<CharacterController>();
-        Health = maxHealth;
+
+        mainCamera = Camera.main;
         audioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(PlayStartSound());
     }

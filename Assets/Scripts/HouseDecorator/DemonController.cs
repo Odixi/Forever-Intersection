@@ -11,7 +11,7 @@ public class DemonController : MonoBehaviour
     public demonDifficulty demonDiff;
     public demonType demon;
     public HouseDecorator houseDecorator;
-    public GameObject hoverIndicator;
+    public GameObject hoverIndicator, happyDemon, sadDemon, donut, ass, canvasThings;
     public string demonText;
     public Animator assAnimator, donutAnimator;
     public float speed;
@@ -75,12 +75,22 @@ public class DemonController : MonoBehaviour
                   if(Input.GetButtonDown("Fire1"))
                   {                   
                       if(houseDecorator.points >= requiredPoints)
-                      {
-                          Debug.Log("GOOD JOB");
+                      {                       
+                          happyDemon.gameObject.SetActive(true);
+                          donut.gameObject.SetActive(false);
+                          ass.gameObject.SetActive(false);
+                          canvasThings.gameObject.SetActive(false);
+                          houseDecorator.currentFurniture = null;
+                          Blueprint.singleton = null;
                       }
                       if(houseDecorator.points <= requiredPoints)
                       {
-                          Debug.Log("BAD JOB!!!!");
+                          sadDemon.gameObject.SetActive(true);
+                          donut.gameObject.SetActive(false);
+                          ass.gameObject.SetActive(false);
+                          canvasThings.gameObject.SetActive(false);
+                          houseDecorator.currentFurniture = null;
+                          Blueprint.singleton = null;
                       }            
                   }
               } else hoverIndicator.gameObject.SetActive(false);

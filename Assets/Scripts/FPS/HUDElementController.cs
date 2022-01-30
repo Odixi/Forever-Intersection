@@ -10,6 +10,8 @@ public class HUDElementController : MonoBehaviour
     public TextMeshProUGUI ammoCurrentMag, ammoAll, health, gibleds;
     public float debugHealth;
     public Weapon weapon;
+    [SerializeField]
+    private GameObject pressEtoEnter;
 
     public static HUDElementController Instance;
 
@@ -31,6 +33,7 @@ public class HUDElementController : MonoBehaviour
         health.text = Player.Instance.Health.ToString();
         ammoCurrentMag.text =  $"{weapon.ammoInMagazine}/{weapon.ammo}";
         ammoAll.text = weapon.ammo.ToString();
+        pressEtoEnter.SetActive(Player.Instance.LooksAtHouse);
     }
 
     private bool IsExcited() => animator.GetBool("Excited");
