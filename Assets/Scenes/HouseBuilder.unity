@@ -2558,6 +2558,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3898bc9b7ee6fbd41900236e91b074ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  furnitures:
+  - {fileID: 11400000, guid: a2d5a36696565994588f3a97037fbf56, type: 2}
+  - {fileID: 11400000, guid: 33daab2eec3eb5e4aa181ae1fc825771, type: 2}
+  - {fileID: 11400000, guid: 419d3eaf257ef9747b47a1ae47cf5272, type: 2}
+  preferredFurniture: {fileID: 0}
+  demon: 0
   assAnimator: {fileID: 1172584268}
   donutAnimator: {fileID: 692420890}
   speed: 0.5
@@ -3483,6 +3489,7 @@ MonoBehaviour:
     m_Bits: 320
   mainCam: {fileID: 8747814504431200388}
   player: {fileID: 1941539879}
+  demonController: {fileID: 0}
   currentFurniture: {fileID: 0}
   currentFurniturePrice: 0
   canPlace: 0
@@ -3829,7 +3836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5397106781757043270
 Transform:
   m_ObjectHideFlags: 0

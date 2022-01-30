@@ -7,6 +7,7 @@ public class HouseDecorator : MonoBehaviour
     public LayerMask layerMask;
     [SerializeField] private Camera mainCam;
     [SerializeField] public DebugPlayer player;
+    [SerializeField] private DemonController demonController;
     public GameObject currentFurniture;
     public int currentFurniturePrice;
     public bool canPlace;

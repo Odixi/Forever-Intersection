@@ -85,7 +85,7 @@ MonoBehaviour:
   eyes: {fileID: 1028694822325201479}
   MoveSpeed: 0.008
   FireCooldown: 2
-  projectilePrefab: {fileID: 3196011264453304625, guid: b1c03c5cc8eca9048aa0dd2487b488a2,
+  projectilePrefab: {fileID: 835752325407057929, guid: 9ed249739eb20fa4d9efcf4dc0d2ed4f,
     type: 3}
   spriteRenderer: {fileID: 5507244836165561208}
   idleSprite: {fileID: 21300000, guid: b69de73cd69089b4a9e446c4ac7d5372, type: 3}
