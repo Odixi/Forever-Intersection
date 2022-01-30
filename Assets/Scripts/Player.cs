@@ -12,6 +12,7 @@ public static class PlayerResources
     public static int PistolAmmo; // Save here when changing scenes!
     public static int ShotgunAmmo;
     public static int Gibs;
+    public static int HousesDecoratedGood, HousesDecoratedBad;
 
     public static int Level;
 }

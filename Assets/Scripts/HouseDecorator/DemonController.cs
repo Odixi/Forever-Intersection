@@ -90,6 +90,7 @@ public class DemonController : MonoBehaviour
                           helloText.SetActive(false);
                           houseDecorator.currentFurniture = null;
                           Blueprint.singleton = null;
+                          PlayerResources.HousesDecoratedGood++;
                       }
                       if(houseDecorator.points <= requiredPoints)
                       {
@@ -103,6 +104,7 @@ public class DemonController : MonoBehaviour
                           helloText.SetActive(false);
                           houseDecorator.currentFurniture = null;
                           Blueprint.singleton = null;
+                          PlayerResources.HousesDecoratedBad++;
                       }            
                   }
               } else hoverIndicator.gameObject.SetActive(false);
