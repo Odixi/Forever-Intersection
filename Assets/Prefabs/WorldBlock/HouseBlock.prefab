@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 2682309687315611808}
   - component: {fileID: 1019764486577061288}
   m_Layer: 0
-  m_Name: StartRoom
+  m_Name: HouseBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

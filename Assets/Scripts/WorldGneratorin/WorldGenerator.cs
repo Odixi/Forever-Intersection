@@ -17,6 +17,8 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField]
     private GameObject StartBlock;
     [SerializeField]
+    private GameObject EndBlock;
+    [SerializeField]
     private GameObject WallPrefab;
     [SerializeField]
     private List<GameObject> EnemyPrefabs;
@@ -27,13 +29,14 @@ public class WorldGenerator : MonoBehaviour
     public float EnemySpawnChancePerRoom = 0.2f;
     public float PickupSpawnChance = 0.1f;
 
+    private bool isEndBlockPlaced = false;
+
 
     private bool cont = false;
 
     private void Start()
     {
-        int tries = 0;
-        while (Blocks.Count < MaxDepth * 2 && ++tries < 20)
+        while (!isEndBlockPlaced)
         {
             Clear();
             Init();
@@ -56,6 +59,7 @@ public class WorldGenerator : MonoBehaviour
     }
     private void Clear()
     {
+        isEndBlockPlaced = false;
         foreach (var b in Blocks)
         {
             Destroy(b.gameObject);
@@ -85,6 +89,16 @@ public class WorldGenerator : MonoBehaviour
             }
             if (depth > MaxDepth)
             {
+                if (!isEndBlockPlaced)
+                {
+                    var eb =  AddBlock(EndBlock, block, i);
+                    if (eb != null)
+                    {
+                        isEndBlockPlaced = true;
+                        PopulateBlockOpenings(eb, depth + 1);
+                        continue;
+                    }
+                }
                 AddBlock(WallPrefab, block, i);
                 continue;
             }
