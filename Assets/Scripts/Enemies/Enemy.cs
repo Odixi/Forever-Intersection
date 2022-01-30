@@ -10,6 +10,9 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField]
     protected Transform eyes;
+    [SerializeField]
+    AudioClip dieSound;
+    protected bool isDead = false;
 
     protected Camera playerCamera;
 
@@ -78,7 +81,19 @@ public abstract class Enemy : MonoBehaviour
     private void Die()
     {
         OnAboutToDie();
+        isDead = true;
         Player.Instance.OnEnemyKill(this);
+
+        var audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.Stop();
+        audioSource.clip = dieSound;
+        audioSource.Play();
+        StartCoroutine(DestroyAfterSound());
+    }
+
+    IEnumerator DestroyAfterSound()
+    {
+        yield return new WaitForSeconds(dieSound.length);
         Destroy(gameObject);
     }
 

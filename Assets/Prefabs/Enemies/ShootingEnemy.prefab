@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 150
   eyes: {fileID: 1028694822325201479}
+  dieSound: {fileID: 8300000, guid: e16988ed596c35149b6ee0b83dd72139, type: 3}
   MoveSpeed: 0.008
   FireCooldown: 2
   projectilePrefab: {fileID: 835752325407057929, guid: 9ed249739eb20fa4d9efcf4dc0d2ed4f,
@@ -130,7 +131,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.553
   m_Pitch: 1
   Loop: 0
   Mute: 0

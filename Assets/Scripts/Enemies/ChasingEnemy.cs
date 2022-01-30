@@ -24,6 +24,7 @@ public class ChasingEnemy : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (this.isDead) return;
         bool seesPlayer = IsPlayerInSight(25);
         if (seesPlayer)
         {
