@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class HUDElementController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class HUDElementController : MonoBehaviour
     public Weapon weapon;
     [SerializeField]
     private GameObject pressEtoEnter;
+    [SerializeField]
+    private GameObject playerDiedELement;
 
     public static HUDElementController Instance;
 
@@ -19,12 +22,40 @@ public class HUDElementController : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        Player.Instance.PlayerDiedEvent.AddListener(OnPlayerDied);
+    }
 
     // Update is called once per frame
     void Update()
     {
         UpdatePlayerResources();
         ChangePlayerFace();
+
+        if (playerDiedELement.activeInHierarchy)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Restart();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+    }
+
+    void OnPlayerDied()
+    {
+        playerDiedELement.SetActive(true);
+    }
+
+    void Restart()
+    {
+        PlayerResources.IsInstantiated = false;
+        SceneManager.LoadScene(0);
     }
 
     void UpdatePlayerResources()

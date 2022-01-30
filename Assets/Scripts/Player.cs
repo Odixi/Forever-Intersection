@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public static class PlayerResources
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour
     private AudioSource audioSource;
     private CharacterController characterController;
     Camera mainCamera;
+
+    public UnityEvent PlayerDiedEvent = new UnityEvent();
 
     public Vector3 TargetPoint => characterController.bounds.center + 0.35f*Vector3.up;
 
@@ -147,7 +150,10 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        print($"Ouch! You take {damageAmount} damage, resulting in {Health} health");
+        if (Health <= 0)
+        {
+            return;
+        }
         HUDElementController.Instance.HurtTrigger();
         Health -= damageAmount;
         audioSource.clip = damageSounds[Random.Range(0, damageSounds.Count)];
@@ -160,8 +166,8 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        // TODO
-        Debug.Log("You Dieded!");
+        PlayerDiedEvent.Invoke();
+        FindObjectOfType<FPSController>().enabled = false;
     }
 
 }
