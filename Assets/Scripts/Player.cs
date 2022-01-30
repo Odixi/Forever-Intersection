@@ -32,6 +32,26 @@ public class Player : MonoBehaviour
         selectedWeapon.SetActive(true);
     }
 
+    public void OnPickup(PickupType type, float amount)
+    {
+        switch (type)
+        {
+            case PickupType.Ammo:
+                foreach(var wgo in weapons)
+                {
+                    var w = wgo.GetComponent<Weapon>();
+                    w.ammo += (int)(amount * w.magazineSize);
+                }
+                break;
+            case PickupType.Health:
+                Health += amount;
+                break;
+            case PickupType.Gibs:
+                // TODO
+                break;
+        }
+    }
+
     public void Awake()
     {
         Instance = this;

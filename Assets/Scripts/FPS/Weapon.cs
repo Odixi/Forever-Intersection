@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private float spread = 0;
     [SerializeField]
-    private int magazineSize = 12;
+    public int magazineSize = 12;
     [SerializeField]
     public int ammo = 100;
     // Seconds per round

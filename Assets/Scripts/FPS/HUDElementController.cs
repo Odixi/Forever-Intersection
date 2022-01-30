@@ -29,7 +29,7 @@ public class HUDElementController : MonoBehaviour
     {
         weapon = Player.Instance.weapon;
         health.text = Player.Instance.Health.ToString();
-        ammoCurrentMag.text = weapon.ammoInMagazine.ToString();
+        ammoCurrentMag.text =  $"{weapon.ammoInMagazine}/{weapon.ammo}";
         ammoAll.text = weapon.ammo.ToString();
     }
 

@@ -15,6 +15,7 @@ public class WorldBlock : MonoBehaviour
     public WorldBlock[] Neighbors { get; private set; }
 
     public Transform EnemySpawnPoint;
+    public Transform[] PickupSpawnPoints;
 
     public bool IsEndWall = false;
 

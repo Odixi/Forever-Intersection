@@ -20,9 +20,12 @@ public class WorldGenerator : MonoBehaviour
     private GameObject WallPrefab;
     [SerializeField]
     private List<GameObject> EnemyPrefabs;
+    [SerializeField]
+    private List<GameObject> PickupPrefabs;
 
     public int MaxDepth = 20;
-    public float SpawnChangePerRoom = 0.2f;
+    public float EnemySpawnChancePerRoom = 0.2f;
+    public float PickupSpawnChance = 0.1f;
 
 
     private bool cont = false;
@@ -96,9 +99,18 @@ public class WorldGenerator : MonoBehaviour
                 continue;
             }
             // Spawn an enemy
-            if (depth > 4 && Random.value < SpawnChangePerRoom)
+            if (depth > 4 && Random.value < EnemySpawnChancePerRoom)
             {
                 Instantiate(EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count)], newBlock.EnemySpawnPoint.position, Quaternion.identity);
+            }
+
+            // Add pickups
+            foreach(var pickupSpawnPoint in newBlock.PickupSpawnPoints)
+            {
+                if (Random.value < PickupSpawnChance)
+                {
+                    Instantiate(PickupPrefabs[Random.Range(0, PickupPrefabs.Count)], pickupSpawnPoint.position, pickupSpawnPoint.rotation);
+                }
             }
 
             PopulateBlockOpenings(newBlock, depth + 1);

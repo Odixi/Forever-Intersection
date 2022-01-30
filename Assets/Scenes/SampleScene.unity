@@ -373,6 +373,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 76025717, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 76025718, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 884532401, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403149, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_Name
@@ -386,17 +398,17 @@ PrefabInstance:
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6489426296852403151, guid: 4c49e7d62fc82cd4bbe7fbdd34effc39,
         type: 3}
@@ -522,15 +534,19 @@ MonoBehaviour:
   - {fileID: 6783609386392868191, guid: 943c62e71f859b54db7693ce8aa6b56d, type: 3}
   - {fileID: 8063038705479883529, guid: 3a6da8e706764a64ea565a5104bc7934, type: 3}
   - {fileID: 2570229957575422106, guid: e64cd766a46220444951b8361f105b2c, type: 3}
-  StartBlock: {fileID: 3753126930045427604, guid: 19a6992f7c252f44189e4676e4df8a3f,
+  StartBlock: {fileID: 7930107945850212715, guid: 4af3b3752480c9e4fac47e57be0c8e2a,
     type: 3}
   WallPrefab: {fileID: 9107600221058385530, guid: 09506a71daeb17c4792ad30c603b33ce,
     type: 3}
   EnemyPrefabs:
   - {fileID: 9136933484159412052, guid: 83410806018d3a8408d80b00b8d047f1, type: 3}
   - {fileID: 1028694822957030393, guid: b2d4643cc253ae94497e0ff3e1c011f9, type: 3}
+  PickupPrefabs:
+  - {fileID: 5825697619503466862, guid: 82be85b83611c974da253dadfd26ec4d, type: 3}
+  - {fileID: 7651767188034324919, guid: 2ded5f2a287c50d41afbaf4eb6be0070, type: 3}
   MaxDepth: 10
-  SpawnChangePerRoom: 0.15
+  EnemySpawnChancePerRoom: 0.2
+  PickupSpawnChance: 0.2
 --- !u!4 &1026278154
 Transform:
   m_ObjectHideFlags: 0
